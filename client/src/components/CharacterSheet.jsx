@@ -38,7 +38,7 @@ export default function CharacterSheet () {
             <div id="character-sheet-title">Лист Персонажа</div>
 
             <div id="character-meta">
-                <CharacterName content="Курамото Казунори" title="Имя персонажа" />
+                <CharacterName content="Моргрим" title="Имя персонажа" />
 
                 <div id="character-about">
                     <div id="character-about-row">

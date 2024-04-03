@@ -33,11 +33,12 @@ header {
     width: 40%;
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 #character-sheet-title {
-    font-size: 30px;
+    font-size: 34px;
     align-self: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 
@@ -51,7 +52,8 @@ header {
     padding: 5px;
     padding-top: 15px;
     font-size: 30px;
-    width: 20%;
+    width: 30%;
+    overflow-wrap: break-word;
 }
 .character-name #info {
     border-top: solid #3E414D;
@@ -87,4 +89,38 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+
+#attributes {
+    display: flex;
+    flex-direction: column;
+    background-color: #222536;
+    width: 14%;
+    padding: 10px;  
+    align-items: center;
+    gap: 10px;
+}
+.attribute {
+    display: flex;
+    flex-direction: column;
+    border: solid #3E414D;
+    border-radius: 15%;
+    width: 80%;
+    height: 0;
+    padding-bottom: 75%;
+    padding-top: 5%;
+    align-items: center;
+    gap: 2px;
+}
+
+#attribute-modifier {
+    font-size: 38px;
+    border-bottom: solid #3E414D;
+}
+#attribute-value {
+    border: solid #3E414D;
+    border-radius: 20%;
+    padding-left: 5px;
+    padding-right: 5px;
 }

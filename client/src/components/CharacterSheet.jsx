@@ -32,6 +32,24 @@ function Attribute (props) {
     );
 }
 
+function Inspiration (props) {
+    return (
+        <div id="inspiration">
+            <div class="checkbox">{props.hasInspiration === "true" ? 'X' : ''}</div>
+            <div>Вдохновение</div>
+        </div>
+    );
+}
+
+function Proficiency (props) {
+    return (
+        <div id="inspiration">
+            <div class="checkbox">{props.proficiency}</div>
+            <div>Бонус владения</div>
+        </div>
+    );
+}
+
 export default function CharacterSheet () {
     return (
         <div id="character-sheet">
@@ -54,13 +72,20 @@ export default function CharacterSheet () {
                 </div>
             </div>
 
-            <div id="attributes">
-                <Attribute name="Сила" value="14" />
-                <Attribute name="Ловкость" value="12" />
-                <Attribute name="Выносливость" value="14" />
-                <Attribute name="Интеллект" value="9" />
-                <Attribute name="Мудрость" value="12" />
-                <Attribute name="Харизма" value="12" />
+            <div class="horizontal-flexbox">
+                <div id="attributes">
+                    <Attribute name="Сила" value="14" />
+                    <Attribute name="Ловкость" value="12" />
+                    <Attribute name="Выносливость" value="14" />
+                    <Attribute name="Интеллект" value="9" />
+                    <Attribute name="Мудрость" value="12" />
+                    <Attribute name="Харизма" value="12" />
+                </div>
+                
+                <div class="vertical-flexbox">
+                    <Inspiration hasInspiration="true" />
+                    <Proficiency proficiency="2" />
+                </div>
             </div>
         </div>
     );

@@ -1,5 +1,5 @@
+/* General */
 
-/* Общие */
 body {
     margin: 0;
     background-color: #2D3142;
@@ -34,7 +34,8 @@ header {
     flex-direction: column;
 }
 
-/* Лист персонажа */
+
+/* Character sheet */
 
 #character-sheet {
     background-color: #3B3F53;
@@ -152,4 +153,13 @@ header {
     padding: 20px;
     padding-bottom: 20%;
     font-size: 32px;
+}
+
+
+/* Лист персонажа */
+
+.header-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

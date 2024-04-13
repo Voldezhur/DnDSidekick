@@ -58,3 +58,8 @@ button {
     padding: 5px;
     font-size: large;
 }
+
+.page-link {
+    text-decoration: none;
+    color: #FFFFFF;
+}

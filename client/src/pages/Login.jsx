@@ -3,10 +3,18 @@ import { useNavigate } from "react-router-dom"
 
 import Header from "../components/Header";
 
-const LoginCompleteFunc = () => {
+const LoginButton = () => {
     const navigate = useNavigate();
 
-    navigate('/characterSheetTest');
+    function handleClick() {
+        navigate('/characterSheetTest');
+    }
+
+    return (
+        <button onClick={handleClick}>
+            Перейти на страницу листа персонажа
+        </button>
+    );
 }
 
 const Login = () => {
@@ -24,9 +32,10 @@ const Login = () => {
 
                     <input></input>
 
-                    <button onClick={LoginCompleteFunc}>
-                        Перейти на страницу листа персонажа
+                    <button onClick={() => {window.location.href = '/'}}>
+
                     </button>
+                    <LoginButton />
                 </div>
             </div>
         </>

@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 
 function ProfileIcon () {
     return (
@@ -6,12 +8,17 @@ function ProfileIcon () {
     );
 }
 
+
 export default function Header () {
     return (
         <header>
             <div class="header-flex">
-                <span>D&D Sidekick</span>
-                <span>Информация</span>
+                <Link to='/' className="page-link">
+                    D&D Sidekick
+                </Link>
+                <Link to='/characterSheetTest' className="page-link">
+                    Лист Персонажа
+                </Link>
                 <span>Информация</span>
                 <ProfileIcon />
             </div>

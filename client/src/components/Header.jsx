@@ -1,8 +1,8 @@
 import React from "react";
 
-function ProfileIcon (props) {
+function ProfileIcon () {
     return (
-        <img src="../icons/profile.svg" alt="" />
+        <img src="../icons/profile.svg" alt="Профиль" />
     );
 }
 

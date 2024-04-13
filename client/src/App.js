@@ -1,17 +1,17 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom'
 
-
-import CharacterSheet from './components/CharacterSheet';
-import Header from './components/Header';
+import MainRouter from './routers/MainRouter';
 
 import './styles/main.css';
+import './styles/characterSheet.css';
+import './styles/login.css'
 
 function App() {
   return (
-    <>
-      <Header />
-      <CharacterSheet />
-    </>
+    <BrowserRouter>
+      <MainRouter />
+    </BrowserRouter>
   );
 }
 

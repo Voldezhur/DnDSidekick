@@ -1,0 +1,17 @@
+.login-main-flex {
+    display: flex;
+    flex-direction: column;
+    height: 10%;
+    justify-content: space-between;   
+    align-items: center;
+}
+
+.login-greetings-text {
+    font-size: 50px;
+    margin-bottom: 10%;
+}
+
+input {
+    width: 100%;
+    margin-bottom: 5%;
+}

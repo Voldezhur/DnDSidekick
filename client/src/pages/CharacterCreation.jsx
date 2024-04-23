@@ -29,7 +29,6 @@ const CharacterCreation = () => {
         const newCharacterSheet = characterSheet;
         newCharacterSheet[property] =  value;
         setCharacterSheet(newCharacterSheet);
-        console.log(characterSheet);
     }
 
     // Функция для сохранения персонажа в базу данных
@@ -47,7 +46,11 @@ const CharacterCreation = () => {
         <>
             <Header />
 
-            {/* Первый шаг создания персонажа */}
+            {/*
+                Первый шаг создания персонажа:
+                . Имя
+                . Краткая предыстория
+            */}
         
             <p className="section-title">Шаг 1. Имя и предыстория</p>
 
@@ -59,10 +62,29 @@ const CharacterCreation = () => {
                 <div className="step-info">
                     <p>Как у каждой истории есть начало, так и у каждого персонажа есть имя и предыстория</p>
                     <p>. Имя - имя вашего персонажа</p>
-                    <p>. Предыстория - то, чем ваш персонаж занималься до того, как отправился на приключения.</p>
+                    <p>. Предыстория - то, чем ваш персонаж занимался до того, как отправился на приключения.</p>
                 </div>
             </div>
 
+            {/*
+                Второй шаг создания персонажа:
+                . Раса
+                . Класс
+            */}
+
+            <p className="section-title">Шаг 1. Имя и предыстория</p>
+
+            <div className="step-flex">
+                <div className="inputs-flex">
+                    <CharacterCreationInput title='Имя' property='name' setProperty={setProperty} />
+                    <CharacterCreationInput title='Предыстория' property='background' setProperty={setProperty} />
+                </div>
+                <div className="step-info">
+                    <p>Как у каждой истории есть начало, так и у каждого персонажа есть имя и предыстория</p>
+                    <p>. Имя - имя вашего персонажа</p>
+                    <p>. Предыстория - то, чем ваш персонаж занимался до того, как отправился на приключения.</p>
+                </div>
+            </div>     
 
             {/* Сохранение персонажа */}
 

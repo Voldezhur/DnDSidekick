@@ -9,7 +9,7 @@
 .inputs-flex {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    justify-content: space-between;
     width: 45%;
 }
 
@@ -26,6 +26,7 @@
 .input-form {
     background-color: #3B3F53;
     padding: 10px;
+    min-height: 30%;
 }
 
 .input-inside-flex {
@@ -33,8 +34,11 @@
     flex-direction: row;
     justify-content: space-between;
 }
-.input-inside-flex input {
+.input {
     max-width: 60%;
+    background: transparent;
+    color: white;
+    font-family: "Kelly slab";
 }
 
 .save-button-flex {

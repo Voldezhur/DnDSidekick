@@ -18,7 +18,12 @@ footer {
 header {
     background-color: #3B3F53;
     margin-top: auto;
-    font-size: 32px;
+    @media (min-width: 850px) {
+        font-size: 32px;
+    }
+    @media (max-width: 850px) {
+        font-size: 20px;
+    }
     padding: 30px;
     width: auto;
 }
@@ -49,6 +54,10 @@ header {
     justify-content: space-between;
 }
 
+.section-title {
+    text-align: center;
+    font-size: 32px;
+}
 
 /* Интерфейс */
 

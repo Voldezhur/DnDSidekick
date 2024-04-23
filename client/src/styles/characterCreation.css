@@ -1,0 +1,35 @@
+.step-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.inputs-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.step-info {
+    background-color: #3B3F53;
+}
+
+.input-form {
+    background-color: #3B3F53;
+    padding: 10px;
+}
+
+.input-inside-flex {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.save-button-flex {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

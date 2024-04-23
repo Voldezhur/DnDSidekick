@@ -12,14 +12,16 @@ function ProfileIcon () {
 export default function Header () {
     return (
         <header>
-            <div class="header-flex">
+            <div className="header-flex">
                 <Link to='/' className="page-link">
                     D&D Sidekick
                 </Link>
-                <Link to='/characterSheetTest' className="page-link">
-                    Лист Персонажа
+                <Link to='/characterCreation' className="page-link">
+                    Создатель персонажей
                 </Link>
-                <span>Информация</span>
+                <Link to='/compendium' className="page-link">
+                    Справочник
+                </Link>
                 <ProfileIcon />
             </div>
         </header>

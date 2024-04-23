@@ -2,10 +2,9 @@ import React from "react";
 import { useState } from "react";
 import Header from "../components/Header";
 import CharacterCreationInput from "../components/CharacterCreation/CharacterCreationInput";
+import axios from 'axios';
 
 const CharacterCreation = () => {
-    const [characterSheet, setCharacterSheet] = useState(emptyCharacterSheet);  // Состояние, которое определяет создаваемый лист персонажа
-
     // Пустой лист персонажа для записи данных
     const emptyCharacterSheet = {
         name: '',
@@ -21,6 +20,9 @@ const CharacterCreation = () => {
             charisma: 10
         }
     }
+    
+    // Состояние, которое определяет создаваемый лист персонажа
+    const [characterSheet, setCharacterSheet] = useState(emptyCharacterSheet);
 
     // Функция для обновления листа персонажа новыми данными
     const setProperty = (property, value) => {
@@ -30,9 +32,15 @@ const CharacterCreation = () => {
         console.log(characterSheet);
     }
 
-    // Функция для сохранения перонажа в базу данных
+    // Функция для сохранения персонажа в базу данных
     const saveCharacter = () => {
-        
+        axios.post('http://localhost:8000/character/newCharacter', {creator_id: 1, character_sheet: {characterSheet}})
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     }
 
     return (
@@ -55,7 +63,7 @@ const CharacterCreation = () => {
 
             {/* Сохранение персонажа */}
             <div className="save-button-flex">
-                <button>Сохранить персонажа</button>
+                <button onClick={saveCharacter}>Сохранить персонажа</button>
             </div>
         </>
     );

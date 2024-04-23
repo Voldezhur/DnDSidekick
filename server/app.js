@@ -1,8 +1,12 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
+const bodyParser = require('body-parser')
 const app = express();
 const port = 8000;
+
+// Конфигурация CORS
+const cors = require('cors');
+app.use(cors());
 
 // Middleware для подключения к базе данных PostgreSQL
 app.use((req, res, next) => {

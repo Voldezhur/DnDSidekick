@@ -23,6 +23,11 @@
     margin-top: 0;
 }
 
+.step-info-title {
+    border-bottom: solid 1px black;
+    padding-bottom: 5px;
+}
+
 .input-form {
     background-color: #3B3F53;
     padding: 10px;
@@ -33,12 +38,6 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-}
-.input {
-    max-width: 60%;
-    background: transparent;
-    color: white;
-    font-family: "Kelly slab";
 }
 
 .save-button-flex {

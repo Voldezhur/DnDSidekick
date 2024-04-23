@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Header from "../components/Header";
 import CharacterCreationInput from "../components/CharacterCreation/CharacterCreationInput";
+import CharacterCreationDropdown from "../components/CharacterCreation/CharacterCreationDropdown";
 import axios from 'axios';
 
 const CharacterCreation = () => {
@@ -60,7 +61,7 @@ const CharacterCreation = () => {
                     <CharacterCreationInput title='Предыстория' property='background' setProperty={setProperty} />
                 </div>
                 <div className="step-info">
-                    <p>Как у каждой истории есть начало, так и у каждого персонажа есть имя и предыстория</p>
+                    <p className="step-info-title">Как у каждой истории есть начало, так и у каждого персонажа есть имя и предыстория</p>
                     <p>. Имя - имя вашего персонажа</p>
                     <p>. Предыстория - то, чем ваш персонаж занимался до того, как отправился на приключения.</p>
                 </div>
@@ -72,15 +73,15 @@ const CharacterCreation = () => {
                 . Класс
             */}
 
-            <p className="section-title">Шаг 1. Имя и предыстория</p>
+            <p className="section-title">Шаг 2. Раса и класс</p>
 
             <div className="step-flex">
                 <div className="inputs-flex">
-                    <CharacterCreationInput title='Имя' property='name' setProperty={setProperty} />
-                    <CharacterCreationInput title='Предыстория' property='background' setProperty={setProperty} />
+                    <CharacterCreationDropdown title='Раса' property='race' setProperty={setProperty} />
+                    <CharacterCreationDropdown title='Класс' property='class' setProperty={setProperty} />
                 </div>
                 <div className="step-info">
-                    <p>Как у каждой истории есть начало, так и у каждого персонажа есть имя и предыстория</p>
+                    <p className="step-info-title">Как у каждой истории есть начало, так и у каждого персонажа есть имя и предыстория</p>
                     <p>. Имя - имя вашего персонажа</p>
                     <p>. Предыстория - то, чем ваш персонаж занимался до того, как отправился на приключения.</p>
                 </div>

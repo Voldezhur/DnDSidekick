@@ -2,18 +2,25 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .inputs-flex {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 45%;
 }
 
 .step-info {
     background-color: #3B3F53;
+    width: 45%;
+    padding: 10px 20px 10px 20px;
+    border-radius: 32px;
+}
+.step-info p {
+    margin-top: 0;
 }
 
 .input-form {
@@ -24,7 +31,10 @@
 .input-inside-flex {
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    justify-content: space-between;
+}
+.input-inside-flex input {
+    max-width: 60%;
 }
 
 .save-button-flex {

@@ -57,11 +57,15 @@ const CharacterCreation = () => {
                     <CharacterCreationInput title='Предыстория' property='background' setProperty={setProperty} />
                 </div>
                 <div className="step-info">
-
+                    <p>Как у каждой истории есть начало, так и у каждого персонажа есть имя и предыстория</p>
+                    <p>. Имя - имя вашего персонажа</p>
+                    <p>. Предыстория - то, чем ваш персонаж занималься до того, как отправился на приключения.</p>
                 </div>
             </div>
 
+
             {/* Сохранение персонажа */}
+
             <div className="save-button-flex">
                 <button onClick={saveCharacter}>Сохранить персонажа</button>
             </div>

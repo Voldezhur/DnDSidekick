@@ -10,6 +10,7 @@ mainRouter.get('/user/list', Users.getAllUsers);
 
 // Characters
 mainRouter.get('/character/uid/:uid', Characters.getCharactersOfUser);
+mainRouter.get('/character/character_id/:character_id', Characters.getCharactersById);
 mainRouter.post('/character/newCharacter', Characters.postNewCharacter)
 
 module.exports.mainRouter = mainRouter

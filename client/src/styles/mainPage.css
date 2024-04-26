@@ -1,0 +1,67 @@
+.main-page-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    margin: 40px auto 0 auto;
+
+    width: 95%;
+}
+
+.title {
+    font-size: 32px;
+    margin: 0;
+}
+
+.info {
+    font-size: 24px;
+    margin: 0;
+}
+
+/* Characters */
+
+.character-list {
+    list-style-type: none;
+    width: 45%;
+}
+
+.character-card {
+    background-color: #3B3F53;
+    
+    padding: 1px 10px 1px 10px;
+    margin-bottom: 20px;
+}
+
+.character-meta {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.portrait-and-button {
+    max-width: 50px;
+}
+
+.name-and-class {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    margin: 20px 10px 25px 7%;
+}
+
+/* Groups */
+
+.group-list {
+    list-style-type: none;
+    width: 45%;
+}
+
+.group-card {
+    background-color: #3B3F53;
+    
+    padding: 5px 10px 5px 10px;
+    margin-bottom: 20px;
+}

@@ -34,7 +34,7 @@ const CharacterCreation = () => {
 
     // Функция для сохранения персонажа в базу данных
     const saveCharacter = () => {
-        axios.post('http://localhost:8000/character/newCharacter', {creator_id: 1, character_sheet: {characterSheet}})
+        axios.post('http://localhost:8000/character/newCharacter', {creator_id: 1, character_sheet: characterSheet})
         .then((response) => {
             console.log(response);
         })

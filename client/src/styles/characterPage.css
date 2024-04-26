@@ -1,0 +1,17 @@
+.character-page-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 90%;
+    margin: 40px auto 0 auto;
+}
+
+.character-sheet {
+    background-color: #3B3F53;
+    
+    padding: 20px;
+    
+    width: 50%;
+}

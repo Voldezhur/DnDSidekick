@@ -1,22 +1,49 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
-import Dice from "../components/Dice"
 import AccentButton from  "../components/UI/AccentButton"
 
 const DiceRoller = () => {
-    const [selectedDice, setSelectedDice] = useState([20]);  // Список выбранных для броска кубиков
+    const defaultDiceList = [
+        {
+            value: 20,
+            roll: 20
+        }
+    ];
+
+    // Список выбранных для броска кубиков
+    const [selectedDice, setSelectedDice] = useState(defaultDiceList);
+
+    const roll = (d) => {
+        return(Math.floor(Math.random() * d + 1));
+    }
+
+    const rollAllDice = () => {
+        let newDice = [];
+
+        selectedDice.forEach(dice => {
+            newDice = [...newDice, {value: dice.value, roll: roll(dice.value)}];
+        });
+
+        setSelectedDice(newDice);
+    }
 
     return (
         <>
             <Header />
+            
+            {/* Список выбранных кубиков */}
             <div className="selected-dice">
-                {selectedDice.map((value) => {
+                {selectedDice.map((dice, i) => {
                     return (
-                        <Dice value={value} />
+                        <div key={i} className="dice">
+                            <p>{dice.roll}</p>
+                            d{dice.value}
+                        </div>
                     );
                 })}
             </div>
-            <AccentButton title='Кинуть' className={"roll-button"} />
+            
+            <AccentButton title='Кинуть' className={"roll-button"} handleClick={rollAllDice} />
         </>
     );
 }

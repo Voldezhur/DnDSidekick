@@ -85,6 +85,8 @@ input {
     background-color: #33417D;
     border: 0;
     padding: 10px;
-    width: 100%;
-    height: 15vh;
+}
+
+.accent-button:hover {
+    transform: scale(1.1);
 }

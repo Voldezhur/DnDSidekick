@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Dice from "../components/Dice"
+import AccentButton from  "../components/UI/AccentButton"
 
 const DiceRoller = () => {
-    const [selectedDice, setSelectedDice] = useState([20]);
-    
+    const [selectedDice, setSelectedDice] = useState([20]);  // Список выбранных для броска кубиков
+
     return (
         <>
             <Header />
@@ -15,6 +16,7 @@ const DiceRoller = () => {
                     );
                 })}
             </div>
+            <AccentButton title='Кинуть' className={"roll-button"} />
         </>
     );
 }

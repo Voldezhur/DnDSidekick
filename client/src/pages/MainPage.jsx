@@ -37,7 +37,7 @@ const MainPage = () => {
                     })}
                     <li>
                         <Link to='/characterCreation' className="page-link">
-                            <AccentButton title="Создать нового персонажа" />
+                            <AccentButton title="Создать нового персонажа" className="add-button" />
                         </Link>
                     </li>
                 </ul>

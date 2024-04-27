@@ -1,14 +1,33 @@
 .selected-dice {
     display: flex;
     flex-direction: row;
+    align-items: center;
+
     width: 90%;
+    height: 15vh;
 
     background-color: #3B3F53;
 
     margin: 50px auto 0 auto;
+    padding: 20px;
 }
 
 .dice {
-    width: 50px;
-    height: 50px;
+    position: relative;
+
+    height: 50%;
+
+    aspect-ratio: 1 / 1;
+
+    border: 2px solid white;
+    border-radius: 20%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.roll-button {
+    display: block;
+    margin: 20px auto 0 auto;
 }

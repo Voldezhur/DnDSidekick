@@ -10,7 +10,7 @@ exports.getCharactersOfUser = async (req, res) => {
 exports.getCharactersById = async (req, res) => {
     try {
         const r = await req.db.pool.query(`SELECT * FROM characters WHERE character_id = ${req.params.character_id}`);
-        res.json({ err: '', characters: r.rows[0] });
+        res.json({ err: '', body: r.rows[0] });
     } catch (e) {
         res.status(500).send(e.message);
     }

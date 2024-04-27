@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import CharacterCard from "../components/MainPage/CharacterCard";
 import GroupCard from "../components/MainPage/GroupCard";
+import AccentButton from "../components/UI/AccentButton";
 
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const MainPage = () => {
     const [listOfCharacters, setListOfCharacters] = useState([]);
@@ -22,7 +24,6 @@ const MainPage = () => {
         });
     }, []);
     
-    
     return (
         <>
             <Header />
@@ -34,6 +35,11 @@ const MainPage = () => {
                             <CharacterCard key={item.character_id} character={item} />
                         );
                     })}
+                    <li>
+                        <Link to='/characterCreation' className="page-link">
+                            <AccentButton title="Создать нового персонажа" />
+                        </Link>
+                    </li>
                 </ul>
 
                 <ul className="group-list">

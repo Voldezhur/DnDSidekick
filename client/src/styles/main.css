@@ -80,3 +80,11 @@ input {
     text-decoration: none;
     color: #FFFFFF;
 }
+
+.accent-button {
+    background-color: #33417D;
+    border: 0;
+    padding: 10px;
+    width: 100%;
+    height: 15vh;
+}

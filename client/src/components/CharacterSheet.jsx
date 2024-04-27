@@ -1,9 +1,9 @@
 import React from "react";
 
-const CharacterSheet = ({ characterId, character }) => {
+const CharacterSheet = ({ character }) => {
     return (
         <div className="character-sheet">
-            {characterId}
+            {JSON.stringify(character.character_sheet)}
         </div>
     );
 }

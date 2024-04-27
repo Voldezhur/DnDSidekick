@@ -16,8 +16,8 @@ export default function Header () {
                 <Link to='/mainPage' className="page-link">
                     D&D Sidekick
                 </Link>
-                <Link to='/characterCreation' className="page-link">
-                    Создатель персонажа
+                <Link to='/diceRoller' className="page-link">
+                    Кубики
                 </Link>
                 <Link to='/compendium' className="page-link">
                     Справочник

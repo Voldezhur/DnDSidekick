@@ -6,7 +6,7 @@ const CharacterCreationInput = ({ title, property, setProperty }) => {
             <div className='input-form'>
                 <label className="input-inside-flex">
                     {title}:
-                    <input className='input' type='text' onChange={(e) => {setProperty(property, e.target.value)}} />
+                    <textarea className='input' type='text' onChange={(e) => {setProperty(property, e.target.value)}} />
                 </label>
             </div>
         </>

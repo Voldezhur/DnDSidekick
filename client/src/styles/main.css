@@ -76,6 +76,26 @@ input {
     font-family: "Kelly slab";
 }
 
+textarea {
+    resize: none;
+    background: transparent;
+    color: white;
+    
+    font-family: "Kelly slab";
+    font-size: 18px;
+
+    width: 50%;
+}
+
+select {
+    background-color: #2D3142;
+    color: white;
+
+    font-family: "Kelly slab";
+    font-size: 18px;
+    width: 50%;
+}
+
 .page-link {
     text-decoration: none;
     color: #FFFFFF;

@@ -7,12 +7,16 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
 const CharacterCreation = () => {
+    // Списки возможных опций для созданиия персонажа
+    const racesList = ["Человек", "Эльф", "Полуэльф", "Орк", "Полуорк", "Дварф", "Хафлинг", "Гном"];
+    const classesList = ["Варвар", "Воин", "Следопыт", "Плут", "Бард", "Паладин", "Жрец", "Волшебник", "Чародей", "Друид"];
+
     // Пустой лист персонажа для записи данных
     const emptyCharacterSheet = {
-        name: '',
-        background: '',
-        race: '',
-        class: '',
+        name: 'new_character',
+        background: 'placeholder_background',
+        race: racesList[0],
+        class: classesList[0],
         abilityScores: {
             strength: 10,
             dexterity: 10,
@@ -82,13 +86,12 @@ const CharacterCreation = () => {
 
             <div className="step-flex">
                 <div className="inputs-flex">
-                    <CharacterCreationDropdown title='Раса' property='race' setProperty={setProperty} />
-                    <CharacterCreationDropdown title='Класс' property='class' setProperty={setProperty} />
+                    <CharacterCreationDropdown title='Раса' property='race' setProperty={setProperty} optionsList={racesList} />
+                    <CharacterCreationDropdown title='Класс' property='class' setProperty={setProperty} optionsList={classesList} />
                 </div>
                 <div className="step-info">
-                    <p className="step-info-title">Как у каждой истории есть начало, так и у каждого персонажа есть имя и предыстория</p>
-                    <p>. Имя - имя вашего персонажа</p>
-                    <p>. Предыстория - то, чем ваш персонаж занимался до того, как отправился на приключения.</p>
+                    <p className="step-info-title">Класс и раса определяют то, на что способен ваш персонаж, какими способностями обладает, а также его внешний вид</p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices sagittis justo. Vestibulum commodo id enim at placerat
                 </div>
             </div>     
 

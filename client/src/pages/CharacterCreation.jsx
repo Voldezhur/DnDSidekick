@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import CharacterCreationInput from "../components/CharacterCreation/CharacterCreationInput";
 import CharacterCreationDropdown from "../components/CharacterCreation/CharacterCreationDropdown";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const CharacterCreation = () => {
     // Пустой лист персонажа для записи данных
@@ -25,6 +26,9 @@ const CharacterCreation = () => {
     // Состояние, которое определяет создаваемый лист персонажа
     const [characterSheet, setCharacterSheet] = useState(emptyCharacterSheet);
 
+    // Для перехода на главную после созданиия персонажа
+    const navigate = useNavigate();
+
     // Функция для обновления листа персонажа новыми данными
     const setProperty = (property, value) => {
         const newCharacterSheet = characterSheet;
@@ -37,6 +41,7 @@ const CharacterCreation = () => {
         axios.post('http://localhost:8000/character/newCharacter', {creator_id: 1, character_sheet: characterSheet})
         .then((response) => {
             console.log(response);
+            navigate('/mainPage');
         })
         .catch((error) => {
             console.log(error);

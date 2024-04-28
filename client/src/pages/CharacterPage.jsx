@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import axios from "axios";
 
@@ -8,9 +8,11 @@ import Header from "../components/Header";
 import CharacterSheet from "../components/CharacterSheet";
 
 function App() {
-    let { characterId } = useParams();
+    let { characterId } = useParams();  // Получаем айди персонажа из параметров url
     
-    const [character, setCharacter] = useState({});
+    const [character, setCharacter] = useState({});  // Состояние, в котором хранится персонаж
+
+    const navigate = useNavigate();  // Для переключения на домашнюю страницу после удаления персонажа
 
     // Получение персонажа по айди
     // Срабатывает однажды при загрузке страницы
@@ -25,8 +27,13 @@ function App() {
         });
     }, []);
 
-    const deleteCharacter = () => {
-
+    // Функция удаления персонажа и последующего перехода на главную
+    const deleteCharacter = async () => {
+        axios.delete('http://localhost:8000/character/deleteCharacter/' + characterId)
+        .then(() => {navigate('/mainPage')})
+        .catch((error) => {
+            console.log(error);
+        });
     }
 
     return (

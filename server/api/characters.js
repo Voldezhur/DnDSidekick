@@ -43,3 +43,12 @@ exports.postNewCharacter = async (req, res) => {
         res.status(500).send(e.message);
     }
 }
+
+exports.deleteCharacter = async (req, res) => {
+    try {
+        const r = await req.db.pool.query(`DELETE FROM characters WHERE character_id = ${req.params.character_id}`);
+        res.status(200).json({ err: '', info: `deleted character with code ${req.params.character_id}` });
+    } catch (e) {
+        res.status(500).send(e.message);
+    }
+}

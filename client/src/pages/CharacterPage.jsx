@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 import Header from "../components/Header";
-import CharacterSheet from "../components/CharacterSheet";
+import CharacterSheet from "../components/CharacterPage/CharacterSheet";
 
 function App() {
     let { characterId } = useParams();  // Получаем айди персонажа из параметров url
@@ -25,7 +25,7 @@ function App() {
         .catch((error) => {
             console.log(error);
         });
-    }, []);
+    }, [characterId]);
 
     // Функция удаления персонажа и последующего перехода на главную
     const deleteCharacter = async () => {
@@ -39,8 +39,8 @@ function App() {
     return (
         <>
             <Header />
+            {/* <p className="title">{String(character.character_sheet.name)}</p> */}
             <div className="character-page-flex">
-                <CharacterSheet character={character} />
             </div>
             <button className="button-delete-character" onClick={deleteCharacter}>Удалить персонажа</button>
         </>

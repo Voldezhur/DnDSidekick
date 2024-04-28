@@ -13,9 +13,15 @@
     
     padding: 20px;
     
-    width: 50%;
+    width: 60%;
 }
 
 .button-delete-character {
     margin: 100px auto 0 auto;
+}
+
+.title {
+    font-size: 32px;
+    text-align: center;
+    padding-top: 20px;
 }

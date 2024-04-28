@@ -3,13 +3,7 @@ import Header from "../components/Header";
 import AccentButton from  "../components/UI/AccentButton"
 
 const DiceRoller = () => {
-    const defaultDiceList = [
-        {
-            value: 20,
-            roll: 20
-        }
-    ];
-
+    // Список доступных кубиков
     const availableDiceList = [
         {
             value: 2,
@@ -46,7 +40,10 @@ const DiceRoller = () => {
     ]
 
     // Список выбранных для броска кубиков
-    const [selectedDice, setSelectedDice] = useState(defaultDiceList);
+    const [selectedDice, setSelectedDice] = useState([]);
+
+    // Объект аудио для проигрывания звука при броске кубиков
+    const diceRollSound = new Audio("/home/voldezhur/Desktop/Универ/Курсовая 2/DnDSidekick/client/src/pages/DiceRoller.jsx");
 
     // Функция для броска одного кубика
     const roll = (d) => {
@@ -61,6 +58,8 @@ const DiceRoller = () => {
             newDice = [...newDice, {value: dice.value, roll: roll(dice.value)}];
         });
 
+        // Звук не работает
+        // diceRollSound.play();
         setSelectedDice(newDice);
     }
 

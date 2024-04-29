@@ -13,10 +13,12 @@
     
     padding: 20px;
     
+    margin-bottom: 50px;
+
     width: 60%;
 }
 
-.button-delete-character {
+.character-button {
     margin: 100px auto 0 auto;
 }
 
@@ -24,4 +26,23 @@
     font-size: 32px;
     text-align: center;
     padding-top: 20px;
+}
+
+.page-selector {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto 20px auto;;
+}
+
+.page-selector p {
+    font-size: 24px;
+    margin: 0;
+}
+
+.buttons-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
 }

@@ -10,13 +10,17 @@ import { Link } from "react-router-dom";
 
 const MainPage = () => {
     const [listOfCharacters, setListOfCharacters] = useState([]);
-    
+    const [listOfGroups, setListOfGroups] = useState([
+        {
+            'name': 'XTH'
+        }
+    ]);
+
     // Срабатывает однажды при загрузке страницы
     useEffect(() => {
         // Впоследствии заменить 1 айди авторизованного пользователя
         axios.get('http://localhost:8000/character/uid/1')
         .then((response) => {
-            console.log(response.data.characters);
             setListOfCharacters(response.data.characters);
         })
         .catch((error) => {
@@ -43,9 +47,9 @@ const MainPage = () => {
                 </ul>
 
                 <ul className="group-list">
-                    {listOfCharacters.map((item) => {
+                    {listOfGroups.map((item, i) => {
                         return (
-                            <GroupCard key={item.character_id} />
+                            <GroupCard key={i} />
                         );
                     })}
                 </ul>

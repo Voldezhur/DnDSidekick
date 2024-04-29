@@ -11,21 +11,35 @@ function App() {
     let { characterId } = useParams();  // Получаем айди персонажа из параметров url
     
     const [character, setCharacter] = useState({});  // Состояние, в котором хранится персонаж
+    const [isLoading, setIsLoading] = useState(true);  // Состояние подгрузки данных о персонаже с сервера
 
     const navigate = useNavigate();  // Для переключения на домашнюю страницу после удаления персонажа
 
-    // Получение персонажа по айди
+    // Функция отправки запроса к серверу по получению персонажа
+    const getCharacter = async () => {
+        try {
+            const response = await axios.get("http://localhost:8000/character/character_id/" + characterId);
+            return response.data.body;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    // Функция по присваиваниию состояния character полученных данных
+    const fetchCharacter = async () => {
+        await getCharacter()
+        .then (fetchedCharacter => {
+            setCharacter(fetchedCharacter);
+            setIsLoading(false);
+        });
+    }
+
+    // Подгрузка данных
     // Срабатывает однажды при загрузке страницы
     useEffect(() => {
-        // Впоследствии заменить 1 айди авторизованного пользователя
-        axios.get('http://localhost:8000/character/character_id/' + characterId)
-        .then((response) => {
-            setCharacter(response.data.body);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-    }, [characterId]);
+        fetchCharacter();
+    }, []);
+
 
     // Функция удаления персонажа и последующего перехода на главную
     const deleteCharacter = async () => {
@@ -39,10 +53,15 @@ function App() {
     return (
         <>
             <Header />
-            {/* <p className="title">{String(character.character_sheet.name)}</p> */}
+            <p className="title">{isLoading ? "Загрузка" : String(character.character_sheet.name)}</p>
             <div className="character-page-flex">
+                <CharacterSheet character={character} isLoading={isLoading} />
             </div>
-            <button className="button-delete-character" onClick={deleteCharacter}>Удалить персонажа</button>
+
+            <div className="buttons-flex">
+                <button className="character-button" onClick={() => {navigate('/mainPage')}}>Назад</button>
+                <button className="character-button" onClick={deleteCharacter}>Удалить персонажа</button>
+            </div>
         </>
     );
 }

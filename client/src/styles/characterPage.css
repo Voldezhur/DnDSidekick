@@ -12,14 +12,9 @@
     background-color: #3B3F53;
     
     padding: 20px;
-    
-    margin-bottom: 50px;
 
     width: 60%;
-}
-
-.character-button {
-    margin: 100px auto 0 auto;
+    height: 60vh;
 }
 
 .title {
@@ -45,4 +40,6 @@
     display: flex;
     flex-direction: column;
     align-items: start;
+
+    margin-top: 50px;
 }

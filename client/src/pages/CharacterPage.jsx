@@ -59,8 +59,8 @@ function App() {
             </div>
 
             <div className="buttons-flex">
-                <button className="character-button" onClick={() => {navigate('/mainPage')}}>Назад</button>
-                <button className="character-button" onClick={deleteCharacter}>Удалить персонажа</button>
+                <button onClick={() => {navigate('/mainPage')}}>Назад</button>
+                <button onClick={deleteCharacter}>Удалить персонажа</button>
             </div>
         </>
     );

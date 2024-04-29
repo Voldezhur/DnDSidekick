@@ -15,7 +15,12 @@ const CharacterSheet = ({ character, isLoading }) => {
                     return (
                         <>
                             <CharacterSheetPageSelector title={"Основное"} page={page} setPage={setPage} />
-                            {character.character_sheet.class}
+                            <div className="character-sheet-flex">
+                                <div className="character-sheet-entry">
+                                    <p>Раса: {character.character_sheet.race}</p>
+                                    <p>Класс: {character.character_sheet.class}</p>
+                                </div>
+                            </div>
                         </>
                     );
                 // Вторая страница - способности
@@ -30,6 +35,19 @@ const CharacterSheet = ({ character, isLoading }) => {
                     return (
                         <>
                             <CharacterSheetPageSelector title={"Инвентарь"} page={page} setPage={setPage} />
+                            <div className="character-sheet-flex">
+                                <div className="character-sheet-entry">
+                                    <p>Доспех: {character.character_sheet.equipment.armor.name}</p>
+                                    <p>Оружие: {character.character_sheet.equipment.weapon.name}</p>
+                                    <p>
+                                        Класс брони: {
+                                            (character.character_sheet.equipment.armor.type === 'легкий' || character.character_sheet.equipment.armor.type === 'средний') ?
+                                            character.character_sheet.equipment.armor.ac + (character.character_sheet.abilityScores.dexterity - 10) % 2 :
+                                            character.character_sheet.equipment.armor.ac
+                                        }
+                                    </p>
+                                </div>
+                            </div>
                         </>
                     )
                 default:

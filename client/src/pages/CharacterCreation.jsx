@@ -7,9 +7,62 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
 const CharacterCreation = () => {
-    // Списки возможных опций для созданиия персонажа
+    // Списки возможных опций для создания персонажа
     const racesList = ["Человек", "Эльф", "Полуэльф", "Орк", "Полуорк", "Дварф", "Хафлинг", "Гном"];
     const classesList = ["Варвар", "Воин", "Следопыт", "Плут", "Бард", "Паладин", "Жрец", "Волшебник", "Чародей", "Друид"];
+    const armorList = [
+        {
+            name: 'Кожаный доспех',
+            type: 'легкий',
+            ac: 11
+        },
+        {
+            name: 'Клепаная броня',
+            type: 'легкий',
+            ac: 12
+        },
+        {
+            name: 'Кольчужная рубаха',
+            type: 'средний',
+            ac: 13
+        },
+        {
+            name: 'Латы',
+            type: 'тяжелый',
+            ac: 18
+        }
+    ];
+    const weaponsList = [
+        {
+            name: 'Кинжал',
+            type: 'простое',
+            isRanged: false,
+            dmg: '1d6',
+            dmgType: 'колющий'
+        },
+        {
+            name: 'Длинный лук',
+            type: 'воинское',
+            isRanged: true,
+            range: '150/600',
+            dmg: '1d6',
+            dmgType: 'колющий'
+        },
+        {
+            name: 'Секира',
+            type: 'воинское',
+            isRanged: false,
+            dmg: '1d12',
+            dmgType: 'рубящий'
+        },
+        {
+            name: 'Короткий меч',
+            type: 'воинское',
+            isRanged: false,
+            dmg: '1d6',
+            dmgType: 'колющий'
+        }
+    ];
 
     // Пустой лист персонажа для записи данных
     const emptyCharacterSheet = {
@@ -24,6 +77,10 @@ const CharacterCreation = () => {
             intelligence: 10,
             wisdom: 10,
             charisma: 10
+        },
+        equipment: {
+            armor: armorList[0],
+            weapon: weaponsList[0]
         }
     }
     
@@ -36,7 +93,21 @@ const CharacterCreation = () => {
     // Функция для обновления листа персонажа новыми данными
     const setProperty = (property, value) => {
         const newCharacterSheet = characterSheet;
-        newCharacterSheet[property] =  value;
+        newCharacterSheet[property] = value;
+        setCharacterSheet(newCharacterSheet);
+    }
+
+    // Функция для выбора брони
+    const setArmor = (property, value) => {
+        const newCharacterSheet = characterSheet;
+        newCharacterSheet.equipment[property] = armorList.filter(x => {return x.name === value})[0];
+        setCharacterSheet(newCharacterSheet);
+    }
+
+    // Функция для выбора оружия
+    const setWeapon = (property, value) => {
+        const newCharacterSheet = characterSheet;
+        newCharacterSheet.equipment[property] = weaponsList.filter(x => {return x.name === value})[0];
         setCharacterSheet(newCharacterSheet);
     }
 
@@ -94,6 +165,24 @@ const CharacterCreation = () => {
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices sagittis justo. Vestibulum commodo id enim at placerat
                 </div>
             </div>     
+
+            {/* 
+                Третий шаг создания персонажа:
+                . Экипировка
+             */}
+
+            <p className="section-title">Шаг 3. Экипировка</p>
+
+            <div className="step-flex">
+                <div className="inputs-flex">
+                    <CharacterCreationDropdown title='Доспех' property='armor' setProperty={setArmor} optionsList={armorList} />
+                    <CharacterCreationDropdown title='Оружие' property='weapon' setProperty={setWeapon} optionsList={weaponsList} />
+                </div>
+                <div className="step-info">
+                    <p className="step-info-title">Для каждого героя важна его экипировка. Она отвечает за класс брони и урон, который вы способны нанести врагам</p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices sagittis justo. Vestibulum commodo id enim at placerat
+                </div>
+            </div> 
 
             {/* Сохранение персонажа */}
 

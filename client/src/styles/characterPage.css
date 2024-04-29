@@ -30,7 +30,6 @@
     width: 80%;
     margin: 0 auto 20px auto;;
 }
-
 .page-selector p {
     font-size: 24px;
     margin: 0;
@@ -42,4 +41,19 @@
     align-items: start;
 
     margin-top: 50px;
+}
+
+.character-sheet-entry {
+    display: flex;
+    flex-direction: column;
+}
+.character-sheet-entry p {
+    font-size: 24px;
+}
+
+.character-sheet-flex {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
 }

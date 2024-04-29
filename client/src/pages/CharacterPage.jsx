@@ -15,31 +15,30 @@ function App() {
 
     const navigate = useNavigate();  // Для переключения на домашнюю страницу после удаления персонажа
 
-    // Функция отправки запроса к серверу по получению персонажа
-    const getCharacter = async () => {
-        try {
-            const response = await axios.get("http://localhost:8000/character/character_id/" + characterId);
-            return response.data.body;
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    // Функция по присваиваниию состояния character полученных данных
-    const fetchCharacter = async () => {
-        await getCharacter()
-        .then (fetchedCharacter => {
-            setCharacter(fetchedCharacter);
-            setIsLoading(false);
-        });
-    }
-
     // Подгрузка данных
     // Срабатывает однажды при загрузке страницы
     useEffect(() => {
-        fetchCharacter();
-    }, []);
+        // Функция отправки запроса к серверу по получению персонажа
+        const getCharacter = async () => {
+            try {
+                const response = await axios.get("http://localhost:8000/character/character_id/" + characterId);
+                return response.data.body;
+            } catch (error) {
+                console.log(error);
+            }
+        }
 
+        // Функция по присваиваниию состояния character полученных данных
+        const fetchCharacter = async () => {
+            await getCharacter()
+            .then (fetchedCharacter => {
+                setCharacter(fetchedCharacter);
+                setIsLoading(false);
+            });
+        }
+        
+        fetchCharacter();
+    }, [characterId]);
 
     // Функция удаления персонажа и последующего перехода на главную
     const deleteCharacter = async () => {

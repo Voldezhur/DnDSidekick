@@ -1,10 +1,11 @@
 import React from "react";
+import axios from 'axios';
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import CharacterCreationInput from "../components/CharacterCreation/CharacterCreationInput";
 import CharacterCreationDropdown from "../components/CharacterCreation/CharacterCreationDropdown";
-import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+import CharacterCreationAbilities from "../components/CharacterCreation/CharacterCreationAbilities";
 
 const CharacterCreation = () => {
     // Списки возможных опций для создания персонажа
@@ -71,12 +72,12 @@ const CharacterCreation = () => {
         race: racesList[0],
         class: classesList[0],
         abilityScores: {
-            strength: 10,
-            dexterity: 10,
-            constitution: 10,
-            intelligence: 10,
-            wisdom: 10,
-            charisma: 10
+            strength: {score: 10, modifier: 0},
+            dexterity: {score: 10, modifier: 0},
+            constitution: {score: 10, modifier: 0},
+            intelligence: {score: 10, modifier: 0},
+            wisdom: {score: 10, modifier: 0},
+            charisma: {score: 10, modifier: 0}
         },
         equipment: {
             armor: armorList[0],
@@ -108,6 +109,13 @@ const CharacterCreation = () => {
     const setWeapon = (property, value) => {
         const newCharacterSheet = characterSheet;
         newCharacterSheet.equipment[property] = weaponsList.filter(x => {return x.name === value})[0];
+        setCharacterSheet(newCharacterSheet);
+    }
+
+    const setAbility = (ability, value) => {
+        const newCharacterSheet = characterSheet;
+        newCharacterSheet.abilityScores[ability].score = value;
+        newCharacterSheet.abilityScores[ability].modifier =  (value - 10) % 2;
         setCharacterSheet(newCharacterSheet);
     }
 
@@ -168,10 +176,27 @@ const CharacterCreation = () => {
 
             {/* 
                 Третий шаг создания персонажа:
+                . Атрибуты
+            */}
+
+            <p className="section-title">Шаг 3. Атрибуты</p>
+
+            <div className="step-flex">
+                <div className="inputs-flex">
+                    <CharacterCreationAbilities title='Доспех' property='armor' setProperty={setArmor} optionsList={armorList} />
+                </div>
+                <div className="step-info">
+                    <p className="step-info-title">Начинается интересное: при выборе своих атрибутов вы выбираете то, в чем ваш персонаж разбирается лучше, в чем силен</p>
+                    Случайно кидается 4 кубика д6, после чего отсеивается меньшее значение. Так делается 6 раз. Полученные значения вы можете распределить между атрибутами
+                </div>
+            </div>
+
+            {/* 
+                Четвертый шаг создания персонажа:
                 . Экипировка
              */}
 
-            <p className="section-title">Шаг 3. Экипировка</p>
+            <p className="section-title">Шаг 4. Экипировка</p>
 
             <div className="step-flex">
                 <div className="inputs-flex">

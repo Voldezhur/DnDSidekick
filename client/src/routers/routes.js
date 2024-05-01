@@ -5,7 +5,7 @@ import CharacterCreation from "../pages/CharacterCreation";
 import MainPage from "../pages/MainPage";
 import Compendium from "../pages/Compendium";
 import Error from "../pages/Error";
-import DiceRoller from "../pages/DiceRoller";
+// import DiceRoller from "../pages/DiceRoller";
 
 export const mainRoutes = [
     { path: '/', element: <Home />, exact: true },
@@ -14,6 +14,6 @@ export const mainRoutes = [
     { path: '/characterCreation', element: <CharacterCreation />, exact: true },
     { path: '/mainPage', element: <MainPage />, exact: true },
     { path: '/compendium', element: <Compendium />, exact: true },
-    { path: '/diceRoller', element: <DiceRoller />, exact: true },
+    // { path: '/diceRoller', element: <DiceRoller />, exact: true },
     { path: '*', element: <Error />, exact: true }
 ]

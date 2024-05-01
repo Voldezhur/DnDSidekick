@@ -1,0 +1,40 @@
+.selected-dice {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+
+    width: 90%;
+    height: 15vh;
+
+    background-color: #3B3F53;
+
+    margin: 50px auto 0 auto;
+    padding: 20px;
+}
+
+.dice {
+    position: relative;
+
+    height: 50%;
+
+    aspect-ratio: 1 / 1;
+
+    border: 2px solid white;
+    border-radius: 20%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dice p {
+    font-size: 24px;
+    margin: 0;
+}
+
+.roll-button {
+    display: block;
+    margin: 20px auto 0 auto;
+}

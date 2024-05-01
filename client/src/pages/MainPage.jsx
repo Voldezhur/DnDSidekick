@@ -7,6 +7,7 @@ import AccentButton from "../components/UI/AccentButton";
 
 import axios from "axios";
 import { Link } from "react-router-dom";
+import DiceRoller from "../components/DiceRoller/DiceRoller";
 
 const MainPage = () => {
     const [listOfCharacters, setListOfCharacters] = useState([]);
@@ -31,6 +32,8 @@ const MainPage = () => {
     return (
         <>
             <Header />
+
+            <DiceRoller />
 
             <div className="main-page-flex">
                 <ul className="character-list">

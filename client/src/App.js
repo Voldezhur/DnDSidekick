@@ -10,7 +10,7 @@ import './styles/characterSheet.css';
 import './styles/characterCreation.css';
 import './styles/mainPage.css';
 import './styles/compendium.css';
-import './styles/diceRollerOld.css';
+// import './styles/diceRollerOld.css';
 import './styles/diceRoller.css';
 
 function App() {

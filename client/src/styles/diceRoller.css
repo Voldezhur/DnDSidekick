@@ -39,3 +39,11 @@
     border: solid white 1px;
     font-size: 18px;
 }
+
+.dice-result {
+    white-space: pre-line;
+}
+
+.dice-result p {
+    margin: 0;
+}

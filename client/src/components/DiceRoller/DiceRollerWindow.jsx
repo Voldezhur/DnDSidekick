@@ -10,6 +10,11 @@ const DiceRollerWindow = () => {
     const addToSelectedDice = (value) => {
         setDiceToRoll([...diceToRoll, value]);
     }
+
+    const popSelectedDice = () => {
+        setDiceToRoll(diceToRoll.slice(0, -1));
+        setDiceResult([]);
+    }
     
     const rollAllDice = () => {
         let diceSum = [];
@@ -19,7 +24,6 @@ const DiceRollerWindow = () => {
             diceSum = [...diceSum, diceRoll];
         });
 
-        console.log(diceSum);
         setDiceResult(diceSum);
         setDiceToRoll([]);
     }
@@ -27,16 +31,21 @@ const DiceRollerWindow = () => {
     return (
         <div className="dice-window">
             <div className="dice-display">
-                {(diceToRoll.length === 0 ? (diceResult.length === 0 ? 0 : diceResult.join(' ')) : diceToRoll.join(' + '))}
+                {(diceToRoll.length === 0
+                    ? 
+                    (diceResult.length === 0 ? 0 : <span className="dice-result"><p>{diceResult.join('\n')}</p></span>)
+                    : 
+                    diceToRoll.join(' + '))}
             </div>
+
+            <button className="roll-button" onClick={rollAllDice}>Бросить</button>
+            <button className="roll-button" onClick={popSelectedDice}>{'<'}</button>
 
             {
                 availableDice.map((dice, i) => {
                     return <Dice key={i} handleClick={addToSelectedDice} value={dice} />
                 })
             }
-
-            <button className="roll-button" onClick={rollAllDice} >Бросить</button>
         </div>
     );
 }

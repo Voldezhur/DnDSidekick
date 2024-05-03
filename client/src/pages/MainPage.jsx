@@ -52,7 +52,7 @@ const MainPage = () => {
                 <ul className="group-list">
                     {listOfGroups.map((item, i) => {
                         return (
-                            <GroupCard key={i} />
+                            <GroupCard key={i} name={item.name} />
                         );
                     })}
                 </ul>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter } from 'react-router-dom'
 
 import MainRouter from './routers/MainRouter';
@@ -10,13 +10,18 @@ import './styles/characterSheet.css';
 import './styles/characterCreation.css';
 import './styles/mainPage.css';
 import './styles/compendium.css';
-// import './styles/diceRollerOld.css';
 import './styles/diceRoller.css';
 
-function App() {
+export const AuthUserId = React.createContext(null);  // Создается глобальный контекст для авторизованного пользователя
+
+const App = () => {
+  const [user, setUser] = useState(null);  // Хранит в себе айди авторизованного пользователя
+
   return (
     <BrowserRouter>
-      <MainRouter />
+      <AuthUserId.Provider value={{ user: user, setUser: setUser }}>
+        <MainRouter />
+      </AuthUserId.Provider>
     </BrowserRouter>
   );
 }

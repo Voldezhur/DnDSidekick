@@ -11,7 +11,7 @@ import DiceRoller from "../components/DiceRoller/DiceRoller";
 
 const MainPage = () => {
     const [listOfCharacters, setListOfCharacters] = useState([]);
-    const [listOfGroups, setListOfGroups] = useState([
+    const [listOfGroups] = useState([
         {
             'name': 'XTH'
         }

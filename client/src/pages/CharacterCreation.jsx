@@ -124,7 +124,7 @@ const CharacterCreation = () => {
         axios.post('http://localhost:8000/character/newCharacter', {creator_id: 1, character_sheet: characterSheet})
         .then((response) => {
             console.log(response);
-            navigate('/mainPage');
+            navigate('/home');
         })
         .catch((error) => {
             console.log(error);

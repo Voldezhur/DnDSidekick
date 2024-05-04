@@ -11,7 +11,7 @@ export const mainRoutes = [
     { path: '/login', element: <Login />, exact: true },
     { path: '/characterSheet/:characterId', element: <CharacterPage />, exact: true },
     { path: '/characterCreation', element: <CharacterCreation />, exact: true },
-    { path: '/mainPage', element: <MainPage />, exact: true },
+    { path: '/home', element: <MainPage />, exact: true },
     { path: '/compendium', element: <Compendium />, exact: true },
     { path: '*', element: <Error />, exact: true }
 ]

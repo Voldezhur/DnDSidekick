@@ -1,43 +1,33 @@
-import React from "react";
-import { useNavigate } from "react-router-dom"
-
+import React, { useContext, useState } from "react";
 import Header from "../components/Header";
 
-const LoginButton = () => {
-    const navigate = useNavigate();
-
-    function handleClick() {
-        navigate('/characterSheetTest');
-    }
-
-    return (
-        <button onClick={handleClick}>
-            Перейти на страницу листа персонажа
-        </button>
-    );
-}
+import { UserContext } from "../App";
 
 const Login = () => {
+    const {userId, setUserId} = useContext(UserContext);  // Глобальный контекст авторизованного пользователя
+    
+    const [userLogin, setUserLogin] = useState(null);
+    const [userPassword, setUserPassword] = useState(null);
+
+    const [loginError, setLoginError] = useState(false);
+
+    const getUserToLogin = () => {
+        if (!userLogin || !userPassword) {
+            setLoginError(true);
+        }
+    }
+
     return (
         <>
             <Header />
 
-            <div className="horizontal-flexbox center-flex">
-                <div className="login-main-flex center-screen">
-                    <img src=".../public/favicon.ico" alt="websiteLogo" />
-                    
-                    <span className="login-greetings-text">
-                        D&D Sidekick
-                    </span>
+            {loginError &&
+                <div>Ошибка при логине</div>
+            }
 
-                    <input></input>
+            <button onClick={getUserToLogin}>Login</button>
 
-                    <button onClick={() => {window.location.href = '/'}}>
 
-                    </button>
-                    <LoginButton />
-                </div>
-            </div>
         </>
     );
 }

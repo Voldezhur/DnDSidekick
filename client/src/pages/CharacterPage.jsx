@@ -43,7 +43,7 @@ function App() {
     // Функция удаления персонажа и последующего перехода на главную
     const deleteCharacter = async () => {
         axios.delete('http://localhost:8000/character/deleteCharacter/' + characterId)
-        .then(() => {navigate('/mainPage')})
+        .then(() => {navigate('/home')})
         .catch((error) => {
             console.log(error);
         });
@@ -58,7 +58,7 @@ function App() {
             </div>
 
             <div className="buttons-flex">
-                <button onClick={() => {navigate('/mainPage')}}>Назад</button>
+                <button onClick={() => {navigate('/home')}}>Назад</button>
                 <button onClick={deleteCharacter}>Удалить персонажа</button>
             </div>
         </>

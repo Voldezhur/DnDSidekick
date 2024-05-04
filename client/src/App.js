@@ -12,16 +12,16 @@ import './styles/mainPage.css';
 import './styles/compendium.css';
 import './styles/diceRoller.css';
 
-export const AuthUserId = React.createContext(null);  // Создается глобальный контекст для авторизованного пользователя
+export const UserContext = React.createContext(null);  // Создается глобальный контекст для авторизованного пользователя
 
 const App = () => {
   const [user, setUser] = useState(null);  // Хранит в себе айди авторизованного пользователя
 
   return (
     <BrowserRouter>
-      <AuthUserId.Provider value={{ user: user, setUser: setUser }}>
+      <UserContext.Provider value={{ user: user, setUser: setUser }}>
         <MainRouter />
-      </AuthUserId.Provider>
+      </UserContext.Provider>
     </BrowserRouter>
   );
 }

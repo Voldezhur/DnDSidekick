@@ -13,7 +13,7 @@ export default function Header () {
     return (
         <header>
             <div className="header-flex">
-                <Link to='/mainPage' className="page-link">
+                <Link to='/home' className="page-link">
                     D&D Sidekick
                 </Link>
                 <Link to='/characterCreation' className="page-link">

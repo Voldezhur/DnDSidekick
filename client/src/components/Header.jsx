@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../App";
 
 
 function ProfileIcon () {
@@ -10,6 +11,8 @@ function ProfileIcon () {
 
 
 export default function Header () {
+    const {user, setUser} = useState(UserContext);
+
     return (
         <header>
             <div className="header-flex">
@@ -22,7 +25,14 @@ export default function Header () {
                 <Link to='/compendium' className="page-link">
                     Справочник
                 </Link>
-                <ProfileIcon />
+
+                {user
+                    ? <ProfileIcon />
+                    : 
+                    <Link to='/register' className="page-link">
+                        Регистрация
+                    </Link>
+                }
             </div>
         </header>
     );

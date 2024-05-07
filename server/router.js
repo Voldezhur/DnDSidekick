@@ -7,6 +7,7 @@ const mainRouter = new RouterClass();
 
 // Users
 mainRouter.get('/user/list', Users.getAllUsers);
+mainRouter.post('/user/register', Users.postNewUser);
 
 // Characters
 mainRouter.get('/character/uid/:uid', Characters.getCharactersOfUser);

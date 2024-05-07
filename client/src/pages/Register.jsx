@@ -4,16 +4,24 @@ import Header from "../components/Header";
 import { UserContext } from "../App";
 import { Link } from "react-router-dom";
 
+import axios from "axios";
+
 const Register = () => {
     const {user, setUser} = useContext(UserContext);
     
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         
-        console.log(username + ' ' + password);
+        axios.post('http://localhost:8000/user/register', {password: password, user_name: username})
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     }
 
     return (

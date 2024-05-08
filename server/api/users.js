@@ -19,7 +19,7 @@ exports.postNewUser = async (req, res) => {
       `);
 
       if (r.rowCount > 0) {
-          r = await req.db.pool.query(`SELECT * FROM users WHERE password = ${req.body.password} and user_name = ${req.body.user_name}`);
+          r = await req.db.pool.query(`SELECT * FROM users WHERE user_name = '${req.body.user_name}' and password = '${req.body.password}'`);
           if (r.rows.length > 0) {
               res.status(201).json({ err: '', newUser: r.rows[0] });
               return;
@@ -34,7 +34,7 @@ exports.postNewUser = async (req, res) => {
 
 exports.postUserForLogin = async (req, res) => {
   try {
-    const query = `SELECT * FROM users WHERE password = '${req.body.password}' and user_name = '${req.body.user_name}'`;
+    const query = `SELECT * FROM users WHERE user_name = '${req.body.user_name}' and password = '${req.body.password}'`;
     const r = await req.db.pool.query(query);
     if (r.rowCount == 0) {
       res.status(400).send("No user found");

@@ -1,13 +1,17 @@
+// Импорт функционала
 import React, { useContext, useState } from "react";
-
-import Header from "../components/Header";
-import { UserContext } from "../App";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+// Импорт компонентов
+import Header from "../components/Header";
+
+import { UserContext } from "../App";
+
 const Register = () => {
-    const {user, setUser} = useContext(UserContext);
+    const {user, setUser} = useContext(UserContext);  // Подгружаем контекст авторизованного пользователя
+    
+    const navigate = useNavigate();  // Для перехода на главную страницу после регистрации
     
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
@@ -15,9 +19,12 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        axios.post('http://localhost:8000/user/register', {password: password, user_name: username})
+        // Ищем пользователя по логину и паролю
+        axios.post('http://localhost:8000/user/register', {user_name: username, password: password})
         .then((response) => {
             console.log(response);
+            setUser(response.data.newUser);
+            navigate('/home');
         })
         .catch((error) => {
             console.log(error);

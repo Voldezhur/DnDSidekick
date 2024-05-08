@@ -1,13 +1,20 @@
-import React from "react";
-import axios from 'axios';
-import { useState } from "react";
+// Импорт функционала
+import { React, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+
+// Импорт компонентов
 import Header from "../components/Header";
 import CharacterCreationInput from "../components/CharacterCreation/CharacterCreationInput";
 import CharacterCreationDropdown from "../components/CharacterCreation/CharacterCreationDropdown";
 import CharacterCreationAbilities from "../components/CharacterCreation/CharacterCreationAbilities";
 
+// Импорт контекста
+import { UserContext } from "../App";  // Контекст авторизованного пользователя
+
 const CharacterCreation = () => {
+    const {user, setUser} = useContext(UserContext);  // Подгружаем контекст авторизованного пользователя
+    
     // Списки возможных опций для создания персонажа
     const racesList = ["Человек", "Эльф", "Полуэльф", "Орк", "Полуорк", "Дварф", "Хафлинг", "Гном"];
     const classesList = ["Варвар", "Воин", "Следопыт", "Плут", "Бард", "Паладин", "Жрец", "Волшебник", "Чародей", "Друид"];
@@ -121,7 +128,7 @@ const CharacterCreation = () => {
 
     // Функция для сохранения персонажа в базу данных
     const saveCharacter = () => {
-        axios.post('http://localhost:8000/character/newCharacter', {creator_id: 1, character_sheet: characterSheet})
+        axios.post('http://localhost:8000/character/newCharacter', {creator_id: user.user_id, character_sheet: characterSheet})  // Сохраняем персонажа с айди авторизованного пользователя
         .then((response) => {
             console.log(response);
             navigate('/home');

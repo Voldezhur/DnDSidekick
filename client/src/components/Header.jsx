@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../App";
 
@@ -11,7 +11,7 @@ function ProfileIcon () {
 
 
 export default function Header () {
-    const {user, setUser} = useState(UserContext);
+    const {user, setUser} = useContext(UserContext);
 
     return (
         <header>
@@ -26,12 +26,13 @@ export default function Header () {
                     Справочник
                 </Link>
 
-                {user
-                    ? <ProfileIcon />
+                {user === null
+                    ? 
+                        <Link to='/register' className="page-link">
+                            Регистрация
+                        </Link>
                     : 
-                    <Link to='/register' className="page-link">
-                        Регистрация
-                    </Link>
+                        <>{user.user_name}</>
                 }
             </div>
         </header>

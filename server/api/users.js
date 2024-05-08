@@ -31,3 +31,18 @@ exports.postNewUser = async (req, res) => {
       res.status(500).send(e.message);
   }
 }
+
+exports.postUserForLogin = async (req, res) => {
+  try {
+    const query = `SELECT * FROM users WHERE password = '${req.body.password}' and user_name = '${req.body.user_name}'`;
+    const r = await req.db.pool.query(query);
+    if (r.rowCount == 0) {
+      res.status(400).send("No user found");
+      return;
+    }
+
+    res.status(200).json({err: '', user: r.rows[0]});
+  } catch(e) {
+    res.status(500).send(e.message);
+  }
+}

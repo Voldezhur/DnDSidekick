@@ -18,7 +18,7 @@ const MainPage = () => {
     const {user, setUser} = useContext(UserContext);  // Подгружаем контекст авторизованного пользователя
     
     const [listOfCharacters, setListOfCharacters] = useState([]);  // Состояние списка персонажей пользователя
-    const [listOfGroups] = useState([{'name': 'XTH'}]);  // Временное состояние групп, в которых находится пользователь
+    const [listOfGroups, setListOfGroups] = useState([]);  // Cостояние групп, в которых находится пользователь
 
     // Срабатывает однажды при загрузке страницы
     useEffect(() => {
@@ -26,6 +26,14 @@ const MainPage = () => {
             axios.get('http://localhost:8000/character/uid/' + user.user_id)  // Получаем персонажей по айди авторизованного пользователя
             .then((response) => {
                 setListOfCharacters(response.data.characters);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+            axios.get('http://localhost:8000/group/user/' + user.user_id)  // Получаем персонажей по айди авторизованного пользователя
+            .then((response) => {
+                setListOfGroups(response.data.body);
             })
             .catch((error) => {
                 console.log(error);
@@ -61,7 +69,7 @@ const MainPage = () => {
                         <ul className="group-list">
                             {listOfGroups.map((item, i) => {
                                 return (
-                                    <GroupCard key={i} name={item.name} />
+                                    <GroupCard key={i} name={item.group_name} />
                                 );
                             })}
                         </ul>

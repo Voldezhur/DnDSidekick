@@ -66,8 +66,27 @@
 }
 
 .group-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
     background-color: #3B3F53;
     
-    padding: 5px 10px 5px 10px;
+    padding: 1px 10px 1px 10px;
     margin-bottom: 20px;
+    height: 15vh;
+}
+
+.group-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    font-size: 14px;
+}
+
+.list-of-characters {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }

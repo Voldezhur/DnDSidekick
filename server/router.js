@@ -14,6 +14,7 @@ mainRouter.post('/user/register', Users.postNewUser);
 // Characters
 mainRouter.get('/character/uid/:uid', Characters.getCharactersOfUser);
 mainRouter.get('/character/character_id/:character_id', Characters.getCharactersById);
+mainRouter.get('/character/characters_in_group/:group_id', Characters.getCharactersInGroup);
 mainRouter.post('/character/newCharacter', Characters.postNewCharacter)
 mainRouter.delete('/character/deleteCharacter/:character_id', Characters.deleteCharacter);
 

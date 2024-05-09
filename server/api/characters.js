@@ -16,6 +16,15 @@ exports.getCharactersById = async (req, res) => {
     }
 }
 
+exports.getCharactersInGroup = async (req,res) => {
+    try {
+        const r = await req.db.pool.query(`SELECT * FROM characters WHERE character_id IN (SELECT character_id FROM group_members WHERE group_id = ${req.params.group_id})`);
+        res.json({ err: '', body: r.rows });
+    } catch (e) {
+        res.status(500).send(e.message);
+    }
+}
+
 exports.postNewCharacter = async (req, res) => {
     // console.log(JSON.stringify(req.body.character_sheet));
     // res.sendStatus(201);

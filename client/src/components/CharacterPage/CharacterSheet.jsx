@@ -20,6 +20,14 @@ const CharacterSheet = ({ character, isLoading }) => {
                                     <p>Раса: {character.character_sheet.race}</p>
                                     <p>Класс: {character.character_sheet.class}</p>
                                 </div>
+
+                                <div className="character-sheet-entry">
+                                    {Object.entries(character.character_sheet.abilityScores).map((item, i) => {
+                                        return (
+                                                <div key={i}>{item[0]}: {item[1].score} modifier: {item[1].modifier}</div>
+                                        );
+                                    })}
+                                </div>
                             </div>
                         </>
                     );

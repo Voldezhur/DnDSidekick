@@ -51,3 +51,61 @@
     flex-direction: row;
     justify-content: center;
 }
+
+.attribute-main-flex {
+    display: flex;
+    flex-direction: column;
+
+    background-color: #3B3F53;
+
+    padding: 10px;
+}
+
+.dice-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.dice-for-abilities {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.ability-die {
+    height: 30px;
+    aspect-ratio: 1/1;
+
+    font-size: 24px;
+
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: solid white 1px;
+    border-radius: 15%;
+
+    background-color: #2D3142;
+}
+
+.attribute-selection-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    gap: 10px;
+
+    margin-top: 10px;
+}
+
+.attribute-selection {
+    display: flex;
+    justify-content: space-between;
+    
+    font-size: 20px;
+}
+.attribute-selection p {
+    margin: 0;
+}

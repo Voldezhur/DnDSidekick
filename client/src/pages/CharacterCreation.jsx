@@ -72,63 +72,47 @@ const CharacterCreation = () => {
             dmgType: 'колющий'
         }
     ];
-
-    // Пустой лист персонажа для записи данных
-    const emptyCharacterSheet = {
-        name: 'new_character',
-        background: 'placeholder_background',
-        race: racesList[0],
-        class: classesList[0],
-        abilityScores: {
-            strength: {score: 10, modifier: 0},
-            dexterity: {score: 10, modifier: 0},
-            constitution: {score: 10, modifier: 0},
-            intelligence: {score: 10, modifier: 0},
-            wisdom: {score: 10, modifier: 0},
-            charisma: {score: 10, modifier: 0}
-        },
-        equipment: {
-            armor: armorList[0],
-            weapon: weaponsList[0]
-        }
-    }
     
-    // Состояние, которое определяет создаваемый лист персонажа
-    const [characterSheet, setCharacterSheet] = useState(emptyCharacterSheet);
+    // Состояния нового персонажа
+    const [name, setName] = useState('new_character');
+    const [background, setBackground] = useState('new_background');
+    const [race, setRace] = useState(racesList[0]);
+    const [characterClass, setCharacterClass] = useState(classesList[0]);
+    
+    // Состояния атрибутов
+    const [strength, setStrength] = useState({score: 10, modifier: 0});
+    const [dexterity, setDexterity] = useState({score: 10, modifier: 0});
+    const [constitution, setConstitution] = useState({score: 10, modifier: 0});
+    const [intelligence, setIntelligence] = useState({score: 10, modifier: 0});
+    const [wisdom, setWisdom] = useState({score: 10, modifier: 0});
+    const [charisma, setCharisma] = useState({score: 10, modifier: 0});
+    const [armor, setArmor] = useState(armorList[0]);
+    const [weapon, setWeapon] = useState(weaponsList[0]);
 
     // Для перехода на главную после созданиия персонажа
     const navigate = useNavigate();
 
-    // Функция для обновления листа персонажа новыми данными
-    const setProperty = (property, value) => {
-        const newCharacterSheet = characterSheet;
-        newCharacterSheet[property] = value;
-        setCharacterSheet(newCharacterSheet);
-    }
-
-    // Функция для выбора брони
-    const setArmor = (property, value) => {
-        const newCharacterSheet = characterSheet;
-        newCharacterSheet.equipment[property] = armorList.filter(x => {return x.name === value})[0];
-        setCharacterSheet(newCharacterSheet);
-    }
-
-    // Функция для выбора оружия
-    const setWeapon = (property, value) => {
-        const newCharacterSheet = characterSheet;
-        newCharacterSheet.equipment[property] = weaponsList.filter(x => {return x.name === value})[0];
-        setCharacterSheet(newCharacterSheet);
-    }
-
-    // const setAbility = (ability, value) => {
-    //     const newCharacterSheet = characterSheet;
-    //     newCharacterSheet.abilityScores[ability].score = value;
-    //     newCharacterSheet.abilityScores[ability].modifier =  (value - 10) % 2;
-    //     setCharacterSheet(newCharacterSheet);
-    // }
-
     // Функция для сохранения персонажа в базу данных
     const saveCharacter = () => {
+        const characterSheet = {
+            name: name,
+            background: background,
+            race: race,
+            class: characterClass,
+            abilityScores: {
+                strength: strength,
+                dexterity: dexterity,
+                constitution: constitution,
+                intelligence: intelligence,
+                wisdom: wisdom,
+                charisma: charisma
+            },
+            equipment: {
+                armor: armor,
+                weapon: weapon
+            }
+        }
+        
         axios.post('http://localhost:8000/character/newCharacter', {creator_id: user.user_id, character_sheet: characterSheet})  // Сохраняем персонажа с айди авторизованного пользователя
         .then((response) => {
             console.log(response);
@@ -155,8 +139,8 @@ const CharacterCreation = () => {
 
             <div className="step-flex">
                 <div className="inputs-flex">
-                    <CharacterCreationInput title='Имя' property='name' setProperty={setProperty} />
-                    <CharacterCreationInput title='Предыстория' property='background' setProperty={setProperty} />
+                    <CharacterCreationInput title='Имя' setProperty={setName} />
+                    <CharacterCreationInput title='Предыстория' setProperty={setBackground} />
                 </div>
                 <div className="step-info">
                     <p className="step-info-title">Как у каждой истории есть начало, так и у каждого персонажа есть имя и предыстория</p>
@@ -175,8 +159,8 @@ const CharacterCreation = () => {
 
             <div className="step-flex">
                 <div className="inputs-flex">
-                    <CharacterCreationDropdown title='Раса' property='race' setProperty={setProperty} optionsList={racesList} />
-                    <CharacterCreationDropdown title='Класс' property='class' setProperty={setProperty} optionsList={classesList} />
+                    <CharacterCreationDropdown title='Раса' setProperty={setRace} optionsList={racesList} />
+                    <CharacterCreationDropdown title='Класс' setProperty={setCharacterClass} optionsList={classesList} />
                 </div>
                 <div className="step-info">
                     <p className="step-info-title">Класс и раса определяют то, на что способен ваш персонаж, какими способностями обладает, а также его внешний вид</p>
@@ -193,7 +177,7 @@ const CharacterCreation = () => {
 
             <div className="step-flex">
                 <div className="inputs-flex">
-                    <CharacterCreationAbilities title='Доспех' property='armor' setProperty={setArmor} optionsList={armorList} />
+                    <CharacterCreationAbilities setStrength={setStrength} setDexterity={setDexterity} setConstitution={setConstitution} setIntelligence={setIntelligence} setWisdom={setWisdom} setCharisma={setCharisma} />
                 </div>
                 <div className="step-info">
                     <p className="step-info-title">Начинается интересное: при выборе своих атрибутов вы выбираете то, в чем ваш персонаж разбирается лучше, в чем силен</p>
@@ -210,8 +194,8 @@ const CharacterCreation = () => {
 
             <div className="step-flex">
                 <div className="inputs-flex">
-                    <CharacterCreationDropdown title='Доспех' property='armor' setProperty={setArmor} optionsList={armorList} />
-                    <CharacterCreationDropdown title='Оружие' property='weapon' setProperty={setWeapon} optionsList={weaponsList} />
+                    <CharacterCreationDropdown title='Доспех' setProperty={setArmor} optionsList={armorList} />
+                    <CharacterCreationDropdown title='Оружие' setProperty={setWeapon} optionsList={weaponsList} />
                 </div>
                 <div className="step-info">
                     <p className="step-info-title">Для каждого героя важна его экипировка. Она отвечает за класс брони и урон, который вы способны нанести врагам</p>

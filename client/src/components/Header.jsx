@@ -13,11 +13,11 @@ export default function Header () {
                 {user === null
                     ? 
                         <>
-                            <Link to='/register' className="page-link">
+                            <Link to='/login' className="page-link">
                                 D&D Sidekick
                             </Link>
-                            <Link to='/register' className="page-link">
-                                Регистрация
+                            <Link to='/login' className="page-link">
+                                Авторизация
                             </Link>
                         </>
                     : 

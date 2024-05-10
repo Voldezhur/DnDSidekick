@@ -8,12 +8,13 @@ import Header from "../components/Header";
 import CharacterCreationInput from "../components/CharacterCreation/CharacterCreationInput";
 import CharacterCreationDropdown from "../components/CharacterCreation/CharacterCreationDropdown";
 import CharacterCreationAbilities from "../components/CharacterCreation/CharacterCreationAbilities";
+import DiceRoller from "../components/DiceRoller/DiceRoller";
 
 // Импорт контекста
 import { UserContext } from "../App";  // Контекст авторизованного пользователя
 
 const CharacterCreation = () => {
-    const {user, setUser} = useContext(UserContext);  // Подгружаем контекст авторизованного пользователя
+    const {user} = useContext(UserContext);  // Подгружаем контекст авторизованного пользователя
     
     // Списки возможных опций для создания персонажа
     const racesList = ["Человек", "Эльф", "Полуэльф", "Орк", "Полуорк", "Дварф", "Хафлинг", "Гном"];
@@ -119,12 +120,12 @@ const CharacterCreation = () => {
         setCharacterSheet(newCharacterSheet);
     }
 
-    const setAbility = (ability, value) => {
-        const newCharacterSheet = characterSheet;
-        newCharacterSheet.abilityScores[ability].score = value;
-        newCharacterSheet.abilityScores[ability].modifier =  (value - 10) % 2;
-        setCharacterSheet(newCharacterSheet);
-    }
+    // const setAbility = (ability, value) => {
+    //     const newCharacterSheet = characterSheet;
+    //     newCharacterSheet.abilityScores[ability].score = value;
+    //     newCharacterSheet.abilityScores[ability].modifier =  (value - 10) % 2;
+    //     setCharacterSheet(newCharacterSheet);
+    // }
 
     // Функция для сохранения персонажа в базу данных
     const saveCharacter = () => {
@@ -141,6 +142,8 @@ const CharacterCreation = () => {
     return (
         <>
             <Header />
+
+            <DiceRoller />
 
             {/*
                 Первый шаг создания персонажа:

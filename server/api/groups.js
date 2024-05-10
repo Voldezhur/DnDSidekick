@@ -24,3 +24,30 @@ exports.getGroupByUser = async (req, res) => {
         res.status(500).send(e.message);
     }
 }
+
+exports.postNewGroup = async (req, res) => {
+    try {
+        if (!req.body) {
+            return res.status(400);
+        }
+
+        let r = await req.db.pool.query(`
+            INSERT INTO groups (dm_id, group_name)
+            VALUES (${req.body.dm_id}, '${req.body.group_name}');
+        `);
+
+        // Также вставить в group_members всех членов группы через цикл
+
+        if (r.rowCount > 0) {
+            r = await req.db.pool.query(`SELECT * FROM groups WHERE dm_id = ${req.body.dm_id} ORDER BY group_id DESC`);
+            if (r.rows.length > 0) {
+                res.status(201).json({ err: '', newGroup: r.rows[0] });
+                return;
+            }
+        }
+
+        res.json({ err: 'There has been an error creating the new group', newGroup: {} });
+    } catch (e) {
+        res.status(500).send(e.message);
+    }
+}

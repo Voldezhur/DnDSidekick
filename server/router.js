@@ -22,5 +22,6 @@ mainRouter.delete('/character/deleteCharacter/:character_id', Characters.deleteC
 // Groups
 mainRouter.get('/group/:group_id', Groups.getGroupById);
 mainRouter.get('/group/user/:user_id', Groups.getGroupByUser);
+mainRouter.post('/group/newGroup', Groups.postNewGroup);
 
 module.exports.mainRouter = mainRouter

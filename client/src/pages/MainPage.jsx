@@ -54,6 +54,9 @@ const MainPage = () => {
 
                     <div className="main-page-flex">
                         <ul className="character-list">
+                            <li>
+                                <div className="list-title">Персонажи</div>
+                            </li>
                             {listOfCharacters.map((item) => {
                                 return (
                                     <CharacterCard key={item.character_id} character={item} />
@@ -67,15 +70,24 @@ const MainPage = () => {
                         </ul>
 
                         <ul className="group-list">
+                            <li>
+                                <div className="list-title">Группы</div>
+                            </li>
                             {listOfGroups.map((item, i) => {
                                 return (
                                     <GroupCard key={i} group={item} />
                                 );
                             })}
-                            <div className="group-buttons">
-                                <AccentButton title="Создать группу" className="group-button" />
-                                <AccentButton title="Присоединиться к группе" className="group-button" />
-                            </div>
+                            <li>
+                                <div className="group-buttons">
+                                    <Link to='/groupCreation' className="group-button">
+                                        <AccentButton title="Создать группу" className="add-button" />
+                                    </Link>
+                                    <Link to='/groupJoin' className="group-button">
+                                        <AccentButton title="Присоединиться к группе" className="add-button" />
+                                    </Link>
+                                </div>
+                            </li>
                         </ul>
                     </div>            
                 </>   

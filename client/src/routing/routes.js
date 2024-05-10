@@ -5,6 +5,7 @@ import CharacterPage from "../pages/CharacterPage";
 import CharacterCreation from "../pages/CharacterCreation";
 import MainPage from "../pages/MainPage";
 import Compendium from "../pages/Compendium";
+import Profile from "../pages/Profile";
 import Error from "../pages/Error";
 
 export const mainRoutes = [
@@ -15,5 +16,6 @@ export const mainRoutes = [
     { path: '/characterCreation', element: <CharacterCreation />, exact: true },
     { path: '/home', element: <MainPage />, exact: true },
     { path: '/compendium', element: <Compendium />, exact: true },
+    { path: '/profile', element: <Profile />, exact: true },
     { path: '*', element: <Error />, exact: true }
 ]

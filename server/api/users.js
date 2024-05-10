@@ -7,6 +7,15 @@ exports.getAllUsers = async (req, res) => {
   }
 }
 
+exports.getUserById = async (req, res) => {
+  try {
+    const r = await req.db.pool.query(`SELECT * FROM users WHERE user_id = ${req.params.user_id}`)
+    res.json({err: '', user: r.rows[0]});
+  } catch(e) {
+    res.status(500).send(e.message);
+  }
+}
+
 exports.postNewUser = async (req, res) => {
   try {
       if (!req.body) {

@@ -110,3 +110,20 @@ select {
 .accent-button:hover {
     transform: scale(1.1);
 }
+
+.error-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.error-text p {
+    font-size: 32px;
+}
+
+.error-code {
+    margin-top: 50px;
+
+    font-size: 48px;
+    color: crimson;
+}

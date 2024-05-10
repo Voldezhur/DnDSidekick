@@ -88,5 +88,21 @@
 .list-of-characters {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
+
+    padding: 0;
+}
+
+.character-in-group {
+    margin: 0;
+}
+
+.group-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.group-button {
+    width: 45%;
+    height: 15vh;
 }

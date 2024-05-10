@@ -13,6 +13,7 @@ import './styles/characterCreation.css';
 import './styles/mainPage.css';
 import './styles/compendium.css';
 import './styles/diceRoller.css';
+import './styles/profile.css';
 
 export const UserContext = createContext();  // Создается глобальный контекст для авторизованного пользователя
 

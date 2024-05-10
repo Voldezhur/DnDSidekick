@@ -1,0 +1,20 @@
+.profile-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 90%;
+    margin: 50px auto 0 auto;
+}
+
+.profile-info {
+    background-color: #3B3F53;
+    padding: 10px;
+}
+.profile-info p {
+    margin: 0;
+}
+
+.logout-button {
+    margin-top: 50px;
+}

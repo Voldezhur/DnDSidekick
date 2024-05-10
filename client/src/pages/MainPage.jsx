@@ -15,7 +15,7 @@ import { UserContext } from "../App";  // Контекст авторизова�
 
 
 const MainPage = () => {
-    const {user, setUser} = useContext(UserContext);  // Подгружаем контекст авторизованного пользователя
+    const {user} = useContext(UserContext);  // Подгружаем контекст авторизованного пользователя
     
     const [listOfCharacters, setListOfCharacters] = useState([]);  // Состояние списка персонажей пользователя
     const [listOfGroups, setListOfGroups] = useState([]);  // Cостояние групп, в которых находится пользователь
@@ -39,7 +39,7 @@ const MainPage = () => {
                 console.log(error);
             });
         }
-    }, []);
+    }, [user]);
     
     return (
         <>
@@ -72,6 +72,10 @@ const MainPage = () => {
                                     <GroupCard key={i} group={item} />
                                 );
                             })}
+                            <div className="group-buttons">
+                                <AccentButton title="Создать группу" className="group-button" />
+                                <AccentButton title="Присоединиться к группе" className="group-button" />
+                            </div>
                         </ul>
                     </div>            
                 </>   

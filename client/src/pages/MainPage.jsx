@@ -57,9 +57,9 @@ const MainPage = () => {
                             <li>
                                 <div className="list-title">Персонажи</div>
                             </li>
-                            {listOfCharacters.map((item) => {
+                            {listOfCharacters.map((item, i) => {
                                 return (
-                                    <CharacterCard key={item.character_id} character={item} />
+                                    <CharacterCard key={i} character={item} />
                                 );
                             })}
                             <li>

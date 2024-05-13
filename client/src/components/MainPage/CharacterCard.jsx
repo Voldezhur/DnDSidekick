@@ -13,8 +13,8 @@ const CharacterCard = ({ character }) => {
                     </Link>
                 </div>
                 <div className="name-and-class">
-                    <p className="title">{character.character_sheet.name.split(' ')[0]}</p>
-                    <p className="info">{character.character_sheet.class}</p>
+                    <p className="title">{character.name.split(' ')[0]}</p>
+                    <p className="info">{character.class_id}</p>
                 </div>
             </div>
         </li>

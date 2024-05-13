@@ -1,15 +1,15 @@
 exports.getCharactersOfUser = async (req, res) => {
     try {
-        const r = await req.db.pool.query(`SELECT * FROM characters WHERE creator_id = ${req.params.uid}`);
+        const r = await req.db.pool.query(`SELECT c.character_id, c.creator_id, cs.* FROM characters c LEFT JOIN character_sheets cs ON c.character_sheet_id = cs.character_sheet_id WHERE c.creator_id = ${req.params.uid}`);
         res.json({ err: '', creator_id: req.params.uid, characters: r.rows });
     } catch (e) {
         res.status(500).send(e.message);
     }
 }
 
-exports.getCharactersById = async (req, res) => {
+exports.getCharacterById = async (req, res) => {
     try {
-        const r = await req.db.pool.query(`SELECT * FROM characters WHERE character_id = ${req.params.character_id}`);
+        const r = await req.db.pool.query(`SELECT c.character_id, c.creator_id, cs.* FROM characters c LEFT JOIN character_sheets cs ON c.character_sheet_id = cs.character_sheet_id WHERE c.character_id = ${req.params.character_id}`);
         res.json({ err: '', body: r.rows[0] });
     } catch (e) {
         res.status(500).send(e.message);
@@ -26,23 +26,30 @@ exports.getCharactersInGroup = async (req,res) => {
 }
 
 exports.postNewCharacter = async (req, res) => {
-    // console.log(JSON.stringify(req.body.character_sheet));
-    // res.sendStatus(201);
-
     try {
         if (!req.body) {
             return res.status(400);
         }
 
-        let r = await req.db.pool.query(`
-            INSERT INTO characters (creator_id, character_sheet)
-            VALUES (${req.body.creator_id}, '${JSON.stringify(req.body.character_sheet)}');
+        // Сначала создаем лист персонажа
+        let r_character_sheet = await req.db.pool.query(`
+            INSERT INTO character_sheets (name, background, class_id, race_id, ability_scores)
+            VALUES ('${req.body.character_sheet.name}', '${req.body.background}',  ${req.body.character_sheet.class_id}, ${req.body.character_sheet.race_id}, '${JSON.stringify(req.body.character_sheet.ability_scores)}');
         `);
 
-        if (r.rowCount > 0) {
-            r = await req.db.pool.query(`SELECT * FROM characters WHERE creator_id = ${req.body.creator_id} ORDER BY character_id DESC`);
+        // Если лист персонажа создался
+        if (r_character_sheet.rowCount > 0) {
+            // Получаем созданный лист персонажа
+            r = await req.db.pool.query(`SELECT * FROM character_sheets WHERE name = '${req.body.character_sheet.name}' ORDER BY character_sheet_id DESC`);
             if (r.rows.length > 0) {
-                res.status(201).json({ err: '', newCharacter: r.rows[0] });
+                // Создаем нового персонажа с новым листом
+                let r_character = await req.db.pool.query(`
+                    INSERT INTO characters (creator_id, character_sheet_id)
+                    VALUES (${req.body.creator_id}, ${r.rows[0].character_sheet_id});
+                `);
+
+                // Созвращаем нового персонажа
+                res.status(201).json({ err: '', newCharacter: r_character.body });
                 return;
             }
         }

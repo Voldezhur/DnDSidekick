@@ -17,12 +17,12 @@ const CharacterSheet = ({ character, isLoading }) => {
                             <CharacterSheetPageSelector title={"Основное"} page={page} setPage={setPage} />
                             <div className="character-sheet-flex">
                                 <div className="character-sheet-entry">
-                                    <p>Раса: {character.character_sheet.race}</p>
-                                    <p>Класс: {character.character_sheet.class}</p>
+                                    <p>Раса: {character.race_id}</p>
+                                    <p>Класс: {character.class_id}</p>
                                 </div>
 
                                 <div className="character-sheet-entry">
-                                    {Object.entries(character.character_sheet.abilityScores).map((item, i) => {
+                                    {Object.entries(character.ability_scores).map((item, i) => {
                                         return (
                                                 <div key={i}>{item[0]}: {item[1].score} modifier: {item[1].modifier}</div>
                                         );
@@ -45,7 +45,7 @@ const CharacterSheet = ({ character, isLoading }) => {
                             <CharacterSheetPageSelector title={"Инвентарь"} page={page} setPage={setPage} />
                             <div className="character-sheet-flex">
                                 <div className="character-sheet-entry">
-                                    <p>Доспех: {character.character_sheet.equipment.armor.name}</p>
+                                    {/* <p>Доспех: {character.character_sheet.equipment.armor.name}</p>
                                     <p>Оружие: {character.character_sheet.equipment.weapon.name}</p>
                                     <p>
                                         Класс брони: {
@@ -53,7 +53,7 @@ const CharacterSheet = ({ character, isLoading }) => {
                                             character.character_sheet.equipment.armor.ac + (character.character_sheet.abilityScores.dexterity - 10) % 2 :
                                             character.character_sheet.equipment.armor.ac
                                         }
-                                    </p>
+                                    </p> */}
                                 </div>
                             </div>
                         </>

@@ -52,7 +52,7 @@ function App() {
     return (
         <>
             <Header />
-            <p className="title">{isLoading ? "Загрузка" : String(character.character_sheet.name)}</p>
+            <p className="title">{isLoading ? "Загрузка" : String(character.name)}</p>
             <div className="character-page-flex">
                 <CharacterSheet character={character} isLoading={isLoading} />
             </div>

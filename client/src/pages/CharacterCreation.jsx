@@ -1,5 +1,5 @@
 // Импорт функционала
-import { React, useState, useContext } from "react";
+import { React, useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
@@ -17,61 +17,10 @@ const CharacterCreation = () => {
     const {user} = useContext(UserContext);  // Подгружаем контекст авторизованного пользователя
     
     // Списки возможных опций для создания персонажа
-    const racesList = ["Человек", "Эльф", "Полуэльф", "Орк", "Полуорк", "Дварф", "Хафлинг", "Гном"];
-    const classesList = ["Варвар", "Воин", "Следопыт", "Плут", "Бард", "Паладин", "Жрец", "Волшебник", "Чародей", "Друид"];
-    const armorList = [
-        {
-            name: 'Кожаный доспех',
-            type: 'легкий',
-            ac: 11
-        },
-        {
-            name: 'Клепаная броня',
-            type: 'легкий',
-            ac: 12
-        },
-        {
-            name: 'Кольчужная рубаха',
-            type: 'средний',
-            ac: 13
-        },
-        {
-            name: 'Латы',
-            type: 'тяжелый',
-            ac: 18
-        }
-    ];
-    const weaponsList = [
-        {
-            name: 'Кинжал',
-            type: 'простое',
-            isRanged: false,
-            dmg: '1d6',
-            dmgType: 'колющий'
-        },
-        {
-            name: 'Длинный лук',
-            type: 'воинское',
-            isRanged: true,
-            range: '150/600',
-            dmg: '1d6',
-            dmgType: 'колющий'
-        },
-        {
-            name: 'Секира',
-            type: 'воинское',
-            isRanged: false,
-            dmg: '1d12',
-            dmgType: 'рубящий'
-        },
-        {
-            name: 'Короткий меч',
-            type: 'воинское',
-            isRanged: false,
-            dmg: '1d6',
-            dmgType: 'колющий'
-        }
-    ];
+    const [racesList, setRacesList] = useState([]);
+    const [classesList, setClassesList] = useState([]);
+    const [armorList, setArmorList] = useState([]);
+    const [weaponsList, setWeaponsList] = useState([]);
     
     // Состояния нового персонажа
     const [name, setName] = useState('new_character');
@@ -86,10 +35,101 @@ const CharacterCreation = () => {
     const [intelligence, setIntelligence] = useState({score: 10, modifier: 0});
     const [wisdom, setWisdom] = useState({score: 10, modifier: 0});
     const [charisma, setCharisma] = useState({score: 10, modifier: 0});
-    const [armor, setArmor] = useState(armorList[0]);
-    const [weapon, setWeapon] = useState(weaponsList[0]);
+    const [armor, setArmor] = useState(0);
+    const [weapon, setWeapon] = useState(0);
 
-    // Для перехода на главную после созданиия персонажа
+    // Состояния загрузки данных
+    const [racesLoading, setRacesLoading] = useState(true);
+    const [classesLoading, setClassesLoading] = useState(true);
+    const [armorLoading, setArmorLoading] = useState(true);
+    const [weaponsLoading, setWeaponsLoading] = useState(true);
+
+    // Подгрузка данных
+    // Срабатывает однажды при загрузке страницы
+    useEffect(() => {
+        // Функция отправки запроса к серверу по получению списка рас
+        const getRaces = async () => {
+            try {
+                const response = await axios.get("http://localhost:8000/compendium/races/list");
+                return response.data.body;
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        // Функция отправки запроса к серверу по получению списка классов
+        const getClasses = async () => {
+            try {
+                const response = await axios.get("http://localhost:8000/compendium/classes/list");
+                return response.data.body;
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        
+        // Функция отправки запроса к серверу по получению списка брони
+        const getArmor = async () => {
+            try {
+                const response = await axios.get("http://localhost:8000/compendium/armor/list");
+                return response.data.body;
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        
+        // Функция отправки запроса к серверу по получению списка оружия
+        const getWeapons = async () => {
+            try {
+                const response = await axios.get("http://localhost:8000/compendium/weapons/list");
+                return response.data.body;
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        // Функция по присваиванию состояния списка рас
+        const fetchRaces = async () => {
+            await getRaces()
+            .then (fetchedRaces => {
+                setRacesList(fetchedRaces);
+                setRacesLoading(false);
+            });
+        }
+
+        // Функция по присваиванию состояния списка классов
+        const fetchClasses = async () => {
+            await getClasses()
+            .then (fetchedClasses => {
+                setClassesList(fetchedClasses);
+                setClassesLoading(false);
+            });
+        }
+        
+        // Функция по присваиванию состояния списка брони
+        const fetchArmor = async () => {
+            await getArmor()
+            .then (fetchedArmor => {
+                setArmorList(fetchedArmor);
+                setArmorLoading(false);
+            });
+        }
+
+        // Функция по присваиванию состояния списка оружия
+        const fetchWeapons = async () => {
+            await getWeapons()
+            .then (fetchedWeapons => {
+                setWeaponsList(fetchedWeapons);
+                setWeaponsLoading(false);
+            });
+        }
+        
+        fetchRaces();
+        fetchClasses();
+        fetchArmor();
+        fetchWeapons();
+    }, []);
+
+    // Для перехода на главную после создания персонажа
     const navigate = useNavigate();
 
     // Функция для сохранения персонажа в базу данных
@@ -97,9 +137,9 @@ const CharacterCreation = () => {
         const characterSheet = {
             name: name,
             background: background,
-            race: race,
-            class: characterClass,
-            abilityScores: {
+            race_id: race,
+            class_id: characterClass,
+            ability_scores: {
                 strength: strength,
                 dexterity: dexterity,
                 constitution: constitution,
@@ -112,6 +152,8 @@ const CharacterCreation = () => {
                 weapon: weapon
             }
         }
+
+        console.log(characterSheet);
         
         axios.post('http://localhost:8000/character/newCharacter', {creator_id: user.user_id, character_sheet: characterSheet})  // Сохраняем персонажа с айди авторизованного пользователя
         .then((response) => {
@@ -159,8 +201,13 @@ const CharacterCreation = () => {
 
             <div className="step-flex">
                 <div className="inputs-flex">
-                    <CharacterCreationDropdown title='Раса' setProperty={setRace} optionsList={racesList} />
-                    <CharacterCreationDropdown title='Класс' setProperty={setCharacterClass} optionsList={classesList} />
+                    {/* Ждем загрузки из базы данных и потом рендерим */}
+                    {!racesLoading &&
+                        <CharacterCreationDropdown title='Раса' setProperty={setRace} optionsList={racesList} />
+                    }
+                    {!classesLoading &&
+                        <CharacterCreationDropdown title='Класс' setProperty={setCharacterClass} optionsList={classesList} />
+                    }
                 </div>
                 <div className="step-info">
                     <p className="step-info-title">Класс и раса определяют то, на что способен ваш персонаж, какими способностями обладает, а также его внешний вид</p>
@@ -194,8 +241,13 @@ const CharacterCreation = () => {
 
             <div className="step-flex">
                 <div className="inputs-flex">
-                    <CharacterCreationDropdown title='Доспех' setProperty={setArmor} optionsList={armorList} />
-                    <CharacterCreationDropdown title='Оружие' setProperty={setWeapon} optionsList={weaponsList} />
+                    {/* Ждем загрузки из базы данных и потом рендерим */}
+                    {!armorLoading &&
+                        <CharacterCreationDropdown title='Доспех' setProperty={setArmor} optionsList={armorList} />
+                    }
+                    {!weaponsLoading &&
+                        <CharacterCreationDropdown title='Оружие' setProperty={setWeapon} optionsList={weaponsList} />
+                    }
                 </div>
                 <div className="step-info">
                     <p className="step-info-title">Для каждого героя важна его экипировка. Она отвечает за класс брони и урон, который вы способны нанести врагам</p>

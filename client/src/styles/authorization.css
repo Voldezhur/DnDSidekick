@@ -1,23 +1,36 @@
 .main-form {
     display: flex;
     flex-direction: column;
-    justify-content: start;
-    align-items: start;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
 
     font-size: 32px;
 
     width: 50%;
     margin: 20px auto 0 auto;
+    padding: 20px;
+
+    background-color: #3B3F53;
 }
 .main-form input {
     width: 100%;
 }
 
-.register-button {
+.auth-form-title {
+    margin-bottom: 20px;
+    text-decoration: underline;
+}
+
+.auth-button {
     width: 70%;
 }
 
 .already-auth-button {
     margin-top: 50px;
+}
+
+.auth-alt-flex {
+    display: flex;
+    justify-content: center;
 }

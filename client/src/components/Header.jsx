@@ -13,7 +13,7 @@ export default function Header () {
                 {user === null
                     ? 
                         <>
-                            <Link to='/login' className="page-link">
+                            <Link to='/' className="page-link">
                                 D&D Sidekick
                             </Link>
                             <Link to='/login' className="page-link">

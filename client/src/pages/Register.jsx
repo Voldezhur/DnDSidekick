@@ -36,18 +36,22 @@ const Register = () => {
             <Header />
 
             <form className="main-form" onSubmit={handleSubmit}>
+                <label className="auth-form-title">Регистрация</label>
+
                 <label>Логин</label>
                 <input onChange={(e) => {setUsername(e.target.value)}}></input>
 
                 <label>Пароль</label>
                 <input onChange={(e) => {setPassword(e.target.value)}}></input>
 
-                <button type="submit" className="register-button">Зарегистрироваться</button>
+                <button type="submit">Зарегистрироваться</button>
             </form>
 
-            <Link to={"/login"}>
-                <button className="already-auth-button">Уже зарегистрированы? Авторизуйтесь</button>
-            </Link>
+            <div className="auth-alt-flex">
+                <Link to={"/login"}>
+                    <button className="already-auth-button">Уже зарегистрированы? Авторизуйтесь</button>
+                </Link>
+            </div>
         </>
     );
 }

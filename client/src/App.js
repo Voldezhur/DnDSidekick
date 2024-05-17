@@ -5,6 +5,7 @@ import { createContext } from 'react';
 
 import MainRouter from './routing/MainRouter';
 
+import './styles/landing.css';
 import './styles/main.css';
 import './styles/authorization.css';
 import './styles/characterPage.css';

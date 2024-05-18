@@ -1,4 +1,4 @@
-import { React, useState, createContext } from 'react';
+import { React } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { CookiesProvider, useCookies } from 'react-cookie';
 
@@ -17,7 +17,7 @@ import './styles/profile.css';
 import './styles/groupCreation.css';
 
 const App = () => {
-  const [cookies, setCookie] = useCookies(['user']);
+  const [cookies, setCookie] = useCookies();  // Создаем куки, которые будут использоваться в приложении
 
   return (
     <BrowserRouter>

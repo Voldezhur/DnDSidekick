@@ -1,5 +1,5 @@
 // Импорт функционала
-import { React, useState, useContext, useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
@@ -14,7 +14,7 @@ import DiceRoller from "../components/DiceRoller/DiceRoller";
 import { useCookies } from "react-cookie";
 
 const CharacterCreation = () => {
-    const [cookies, setCookie] = useCookies(['user']);
+    const [cookies] = useCookies();  // Подгружаем куки
     
     // Списки возможных опций для создания персонажа
     const [racesList, setRacesList] = useState([]);

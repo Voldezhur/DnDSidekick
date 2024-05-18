@@ -1,16 +1,14 @@
 // Импорт функционала
-import { React, useContext } from "react";
+import { React } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 // Импорт компонентов
 import Header from "../components/Header";
 
-// Импорт контекста
-import { useCookies } from "react-cookie";
-
 
 const Profile = () => {
-    const [cookies, setCookie] = useCookies('user');
+    const [cookies, setCookie] = useCookies();  // Подгружаем куки
 
     const navigate = useNavigate();  // Для переключения на страницу авторизации после логаута
 
@@ -24,7 +22,7 @@ const Profile = () => {
             </div>
             <button className="logout-button" onClick={() => {
                 setCookie('user', null);
-                navigate('/register');
+                navigate('/');
             }}>Выйти из аккаунта</button>
         </>
     );

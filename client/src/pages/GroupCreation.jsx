@@ -1,18 +1,15 @@
 // Импорт функционала
-import { React, useContext, useState } from "react";
+import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import axios from "axios";
 
 // Импорт компонентов
 import Header from "../components/Header";
 
-// Импорт контекста
-import { UserContext } from "../App";
-import { useCookies } from "react-cookie";
-
 
 const GroupCreation = () => {
-    const [cookies, setCookie] = useCookies(['user']);
+    const [cookies] = useCookies();  // Подгружаем куки
     const [groupName, setGroupName] = useState('new_group');
     const [characters, setCharacters] = useState([]);
 

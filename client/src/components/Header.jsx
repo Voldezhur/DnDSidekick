@@ -1,12 +1,11 @@
 // Импорт функционала
-import { React, useContext } from "react";
+import { React } from "react";
 import { Link } from "react-router-dom";
-import { UserContext } from "../App";
 import { useCookies } from "react-cookie";
 
 
 export default function Header () {
-    const [cookies, setCookie] = useCookies(['user']);
+    const [cookies] = useCookies();  // Подгружаем куки
 
     return (
         <header>

@@ -1,8 +1,8 @@
 // Импорт функционала
 import { React, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import axios from "axios";
 import { useCookies } from "react-cookie";
+import axios from "axios";
 
 // Импорт компонентов
 import Header from "../components/Header";
@@ -11,7 +11,7 @@ import Header from "../components/Header";
 const Register = () => {
     const navigate = useNavigate();  // Для переключения на домашнюю страницу после авторизации
     
-    const [cookies, setCookie] = useCookies(['user']);
+    const [cookies, setCookie] = useCookies(['user']);  // Подгружаем куки
     
     // Состояния ввода логина и пароля
     const [username, setUsername] = useState('');
@@ -22,7 +22,7 @@ const Register = () => {
         
         axios.post('http://localhost:8000/user/login', {user_name: username, password: password})
         .then((response) => {
-            setCookie('user', response.data.user, {maxAge: 3600});
+            setCookie('user', response.data.user, {maxAge: 3600});  // Авторизовываем пользователя на 1 час
             navigate('/home');  // Переходим на домашнюю страницу после авторизации
         })
         .catch((error) => {

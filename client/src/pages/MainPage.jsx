@@ -1,7 +1,8 @@
 // Импорт функционала
 import { React, useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import axios from "axios";
 
 // Импорт компонентов
 import Header from "../components/Header";
@@ -10,12 +11,9 @@ import GroupCard from "../components/MainPage/GroupCard";
 import AccentButton from "../components/UI/AccentButton";
 import DiceRoller from "../components/DiceRoller/DiceRoller";
 
-// Импорт контекста
-import { useCookies } from "react-cookie";
-
 
 const MainPage = () => {
-    const [cookies, setCookie] = useCookies(['user']);
+    const [cookies] = useCookies();  // Подгружаем куки
 
     const [listOfCharacters, setListOfCharacters] = useState([]);  // Состояние списка персонажей пользователя
     const [listOfGroups, setListOfGroups] = useState([]);  // Cостояние групп, в которых находится пользователь
@@ -42,8 +40,6 @@ const MainPage = () => {
                 axios.get('http://localhost:8000/group/dm/' + user.user_id)
                 .then((response) => {
                     setListOfGroups([...listOfGroups, ...response.data.body]);
-
-                    console.log(listOfGroups);
                 })
                 .catch((error) => {
                     console.log(error);

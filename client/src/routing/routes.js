@@ -8,6 +8,7 @@ import Compendium from "../pages/Compendium";
 import Profile from "../pages/Profile";
 import GroupCreation from "../pages/GroupCreation";
 import Error from "../pages/Error";
+import GroupPage from "../pages/GroupPage";
 
 export const mainRoutes = [
     { path: '/', element: <Home />, exact: true },
@@ -19,5 +20,6 @@ export const mainRoutes = [
     { path: '/compendium', element: <Compendium />, exact: true },
     { path: '/profile', element: <Profile />, exact: true },
     { path: '/groupCreation', element: <GroupCreation />, exact: true },
+    { path: '/groupPage/:groupId', element: <GroupPage />, exact: true },
     { path: '*', element: <Error />, exact: true }
 ]

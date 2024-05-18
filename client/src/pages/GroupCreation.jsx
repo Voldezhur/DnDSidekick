@@ -18,7 +18,7 @@ const GroupCreation = () => {
     const navigate = useNavigate();
 
     const saveGroup = () => {
-        axios.post('http://localhost:8000/group/newCharacter', {dm_id: user.user_id, group_name: groupName, characters: characters})  // Сохраняем группу с айди авторизованного пользователя в качестве дма
+        axios.post('http://localhost:8000/group/newGroup', {dm_id: user.user_id, group_name: groupName, characters: characters})  // Сохраняем группу с айди авторизованного пользователя в качестве дма
         .then((response) => {
             console.log(response);
             navigate('/home');
@@ -31,6 +31,24 @@ const GroupCreation = () => {
     return(
         <>
             <Header />
+
+            {/*
+                Первый шаг создания персонажа:
+                . Имя
+                . Краткая предыстория
+            */}
+        
+            <p className="section-title">Шаг 1. Название группы</p>
+
+            <div className="step-flex">
+                <div className="inputs-flex">
+                    <input onChange={(e) => {setGroupName(e.target.value)}}></input>
+                </div>
+                <div className="step-info">
+                    <p className="step-info-title">Придумайте название</p>
+                </div>
+            </div>
+
             <button onClick={saveGroup}>Создать группу</button>
         </>
     );

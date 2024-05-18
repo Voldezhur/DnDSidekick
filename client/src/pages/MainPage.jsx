@@ -23,7 +23,8 @@ const MainPage = () => {
     // Срабатывает однажды при загрузке страницы
     useEffect(() => {
         if (user != null) {
-            axios.get('http://localhost:8000/character/uid/' + user.user_id)  // Получаем персонажей по айди авторизованного пользователя
+            // Получаем список персонажей пользователя
+            axios.get('http://localhost:8000/character/uid/' + user.user_id)
             .then((response) => {
                 setListOfCharacters(response.data.characters);
             })
@@ -31,13 +32,25 @@ const MainPage = () => {
                 console.log(error);
             });
 
-            axios.get('http://localhost:8000/group/user/' + user.user_id)  // Получаем персонажей по айди авторизованного пользователя
+            // Получаем список групп пользователя - где у него есть персонажи, и где он ДМ
+            axios.get('http://localhost:8000/group/user/' + user.user_id)
             .then((response) => {
                 setListOfGroups(response.data.body);
+
+                axios.get('http://localhost:8000/group/dm/' + user.user_id)
+                .then((response) => {
+                    setListOfGroups([...listOfGroups, ...response.data.body]);
+
+                    console.log(listOfGroups);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
             })
             .catch((error) => {
                 console.log(error);
             });
+
         }
     }, [user]);
     

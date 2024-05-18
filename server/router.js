@@ -23,6 +23,7 @@ mainRouter.delete('/character/deleteCharacter/:character_id', Characters.deleteC
 // Groups
 mainRouter.get('/group/:group_id', Groups.getGroupById);
 mainRouter.get('/group/user/:user_id', Groups.getGroupByUser);
+mainRouter.get('/group/dm/:user_id', Groups.getGroupByDM);
 mainRouter.post('/group/newGroup', Groups.postNewGroup);
 
 // Character creation

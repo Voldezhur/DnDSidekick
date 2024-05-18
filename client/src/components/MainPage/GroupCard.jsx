@@ -1,6 +1,8 @@
 // Импорт функционала
 import { React, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
+
 
 const GroupCard = ({ group }) => {
     const [listOfCharacters, setListOfCharacters] = useState([]);
@@ -29,6 +31,12 @@ const GroupCard = ({ group }) => {
     
     return (
         <li className="group-card">
+            <div className="card-buttons">
+                <Link to={"/groupPage/" + group.group_id}>
+                    <button>Перейти на страницу</button>
+                </Link>
+                <button>Удалить группу</button>
+            </div>
             <div className="group-info">
                 <h1>{group.group_name}</h1>
                 <h1>DM: {DM.user_name}</h1>

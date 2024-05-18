@@ -2,15 +2,16 @@
 import { React, useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../App";
+import { useCookies } from "react-cookie";
 
 
 export default function Header () {
-    const {user} = useContext(UserContext);
+    const [cookies, setCookie] = useCookies(['user']);
 
     return (
         <header>
             <div className="header-flex">
-                {user === null
+                {cookies.user === null
                     ? 
                         <>
                             <Link to='/' className="page-link">
@@ -32,7 +33,7 @@ export default function Header () {
                                 Справочник
                             </Link>
                             <Link to='/profile' className="page-link">
-                                {user.user_name}
+                                {cookies.user.user_name}
                             </Link>
                         </>
                 }

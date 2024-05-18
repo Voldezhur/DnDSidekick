@@ -6,12 +6,12 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 
 // Импорт контекста
-import { UserContext } from "../App";  // Контекст авторизованного пользователя
+import { useCookies } from "react-cookie";
 
 
 const Profile = () => {
-    const {user, setUser} = useContext(UserContext);  // Подгружаем контекст авторизованного пользователя
-    
+    const [cookies, setCookie] = useCookies('user');
+
     const navigate = useNavigate();  // Для переключения на страницу авторизации после логаута
 
     return(
@@ -19,11 +19,11 @@ const Profile = () => {
             <Header />
             <div className="profile-flex">
                 <div className="profile-info">
-                    <p>Имя пользователя: {user.user_name}</p>
+                    <p>Имя пользователя из куки: {cookies.user.user_id}</p>
                 </div>
             </div>
             <button className="logout-button" onClick={() => {
-                setUser(null);
+                setCookie('user', null);
                 navigate('/register');
             }}>Выйти из аккаунта</button>
         </>

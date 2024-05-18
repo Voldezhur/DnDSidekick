@@ -11,10 +11,10 @@ import CharacterCreationAbilities from "../components/CharacterCreation/Characte
 import DiceRoller from "../components/DiceRoller/DiceRoller";
 
 // Импорт контекста
-import { UserContext } from "../App";  // Контекст авторизованного пользователя
+import { useCookies } from "react-cookie";
 
 const CharacterCreation = () => {
-    const {user} = useContext(UserContext);  // Подгружаем контекст авторизованного пользователя
+    const [cookies, setCookie] = useCookies(['user']);
     
     // Списки возможных опций для создания персонажа
     const [racesList, setRacesList] = useState([]);
@@ -155,7 +155,7 @@ const CharacterCreation = () => {
 
         console.log(characterSheet);
         
-        axios.post('http://localhost:8000/character/newCharacter', {creator_id: user.user_id, character_sheet: characterSheet})  // Сохраняем персонажа с айди авторизованного пользователя
+        axios.post('http://localhost:8000/character/newCharacter', {creator_id: cookies.user.user_id, character_sheet: characterSheet})  // Сохраняем персонажа с айди авторизованного пользователя
         .then((response) => {
             console.log(response);
             navigate('/home');

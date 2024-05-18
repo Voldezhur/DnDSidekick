@@ -5,11 +5,11 @@ import axios from "axios";
 
 // Импорт компонентов
 import Header from "../components/Header";
+import { useCookies } from "react-cookie";
 
-import { UserContext } from "../App";
 
 const Register = () => {
-    const {user, setUser} = useContext(UserContext);  // Подгружаем контекст авторизованного пользователя
+    const [cookies, setCookie] = useCookies(['user']);
     
     const navigate = useNavigate();  // Для перехода на главную страницу после регистрации
     
@@ -23,7 +23,7 @@ const Register = () => {
         axios.post('http://localhost:8000/user/register', {user_name: username, password: password})
         .then((response) => {
             console.log(response);
-            setUser(response.data.newUser);
+            setCookie('user', response.data.newUser, {maxAge: 3600});
             navigate('/home');
         })
         .catch((error) => {

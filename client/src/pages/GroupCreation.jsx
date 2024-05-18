@@ -8,17 +8,18 @@ import Header from "../components/Header";
 
 // Импорт контекста
 import { UserContext } from "../App";
+import { useCookies } from "react-cookie";
 
 
 const GroupCreation = () => {
-    const {user} = useContext(UserContext);
+    const [cookies, setCookie] = useCookies(['user']);
     const [groupName, setGroupName] = useState('new_group');
     const [characters, setCharacters] = useState([]);
 
     const navigate = useNavigate();
 
     const saveGroup = () => {
-        axios.post('http://localhost:8000/group/newGroup', {dm_id: user.user_id, group_name: groupName, characters: characters})  // Сохраняем группу с айди авторизованного пользователя в качестве дма
+        axios.post('http://localhost:8000/group/newGroup', {dm_id: cookies.user.user_id, group_name: groupName, characters: characters})  // Сохраняем группу с айди авторизованного пользователя в качестве дма
         .then((response) => {
             console.log(response);
             navigate('/home');

@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { BrowserRouter } from 'react-router-dom'
-
-import { createContext } from 'react';
+import { React, useState, createContext } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { CookiesProvider, useCookies } from 'react-cookie';
 
 import MainRouter from './routing/MainRouter';
 
@@ -17,16 +16,14 @@ import './styles/diceRoller.css';
 import './styles/profile.css';
 import './styles/groupCreation.css';
 
-export const UserContext = createContext();  // Создается глобальный контекст для авторизованного пользователя
-
 const App = () => {
-  const [user, setUser] = useState(null);  // Хранит в себе айди авторизованного пользователя
+  const [cookies, setCookie] = useCookies(['user']);
 
   return (
     <BrowserRouter>
-      <UserContext.Provider value={{user, setUser}}>
+      <CookiesProvider>
         <MainRouter />
-      </UserContext.Provider>
+      </CookiesProvider>
     </BrowserRouter>
   );
 }

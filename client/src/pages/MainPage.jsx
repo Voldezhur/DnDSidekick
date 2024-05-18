@@ -1,5 +1,5 @@
 // Импорт функционала
-import { React, useEffect, useState, useContext } from "react";
+import { React, useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -11,17 +11,19 @@ import AccentButton from "../components/UI/AccentButton";
 import DiceRoller from "../components/DiceRoller/DiceRoller";
 
 // Импорт контекста
-import { UserContext } from "../App";  // Контекст авторизованного пользователя
+import { useCookies } from "react-cookie";
 
 
 const MainPage = () => {
-    const {user} = useContext(UserContext);  // Подгружаем контекст авторизованного пользователя
-    
+    const [cookies, setCookie] = useCookies(['user']);
+
     const [listOfCharacters, setListOfCharacters] = useState([]);  // Состояние списка персонажей пользователя
     const [listOfGroups, setListOfGroups] = useState([]);  // Cостояние групп, в которых находится пользователь
 
     // Срабатывает однажды при загрузке страницы
     useEffect(() => {
+        const user = cookies.user;
+        
         if (user != null) {
             // Получаем список персонажей пользователя
             axios.get('http://localhost:8000/character/uid/' + user.user_id)
@@ -52,13 +54,13 @@ const MainPage = () => {
             });
 
         }
-    }, [user]);
+    }, [cookies.user]);
     
     return (
         <>
             <Header />
 
-            {user === null  // Проверяем, авторизован пользователь или нет
+            {cookies.user === null  // Проверяем, авторизован пользователь или нет
                 ?
                 <div>Пожалуйста авторизуйтесь</div>
                 :

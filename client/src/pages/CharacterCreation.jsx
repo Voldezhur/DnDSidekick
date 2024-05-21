@@ -255,6 +255,22 @@ const CharacterCreation = () => {
                 </div>
             </div> 
 
+            {/* 
+                Пятый шаг создания персонажа:
+                . Стартовое здоровье
+             */}
+
+            <p className="section-title">Шаг 5. Начальные характеристики</p>
+
+            <div className="step-flex">
+                <div className="inputs-flex">
+                    
+                </div>
+                <div className="step-info">
+                    
+                </div>
+            </div> 
+
             {/* Сохранение персонажа */}
 
             <div className="save-button-flex">

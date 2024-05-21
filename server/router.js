@@ -26,10 +26,13 @@ mainRouter.get('/group/user/:user_id', Groups.getGroupByUser);
 mainRouter.get('/group/dm/:user_id', Groups.getGroupByDM);
 mainRouter.post('/group/newGroup', Groups.postNewGroup);
 
-// Character creation
+// Compendium
 mainRouter.get('/compendium/classes/list', Compendium.getClassesList);
 mainRouter.get('/compendium/races/list', Compendium.getRacesList);
 mainRouter.get('/compendium/weapons/list', Compendium.getWeaponsList);
 mainRouter.get('/compendium/armor/list', Compendium.getArmorList);
+mainRouter.get('/compendium/classes/getClassById/:id', Compendium.getClassById);
+mainRouter.get('/compendium/races/getRaceById/:id', Compendium.getRaceById);
+mainRouter.get('/compendium/items/getItemById/:id', Compendium.getItemById);
 
 module.exports.mainRouter = mainRouter

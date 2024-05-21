@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import useFetching from "../../hooks/useFetching";
 
 import { Link } from "react-router-dom";
 
+
 const CharacterCard = ({ character }) => {
+    const [fetchClass, characterClass, isClassLoading] = useFetching("http://localhost:8000/compendium/classes/getClassById/" + character.class_id);
+
+    useEffect(() => {
+        fetchClass();
+    }, [])
+
     return (
         <li className="character-card">
             <div className="character-meta">
@@ -16,7 +24,17 @@ const CharacterCard = ({ character }) => {
                 </div>
                 <div className="name-and-class">
                     <p className="title">{character.name.split(' ')[0]}</p>
-                    <p className="info">{character.class_id}</p>
+                    {isClassLoading === false &&
+                        <div>
+                            {characterClass.map((item, i) => {
+                                return(
+                                    <div key={i}>
+                                        {item.name}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    }
                 </div>
             </div>
         </li>

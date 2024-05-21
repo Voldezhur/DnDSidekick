@@ -1,9 +1,22 @@
-import React, { useState } from "react";
+// Импорт функционала
+import { React, useEffect, useState } from "react";
+import useFetching from "../../hooks/useFetching";
+
+// Импорт компонентов
 import CharacterSheetPageSelector from "./CharacterSheetPageSelector";
+
 
 const CharacterSheet = ({ character, isLoading }) => {
     const [page, setPage] = useState(1);
-    
+    const [fetchRace, race, isRaceLoading] = useFetching("http://localhost:8000/compendium/races/getRaceById/" + character.race_id);
+    const [fetchClass, characterClass, isClassLoading] = useFetching("http://localhost:8000/compendium/classes/getClassById/" + character.class_id);
+
+    useEffect(() => {
+        fetchRace();
+        fetchClass();
+    }, [])
+
+
     const renderPage = () => {
         if (isLoading) {
             return ("Загрузка");    
@@ -18,7 +31,13 @@ const CharacterSheet = ({ character, isLoading }) => {
                             <div className="character-sheet-flex">
                                 <div className="character-sheet-entry">
                                     <p>Раса: {character.race_id}</p>
+                                    {isRaceLoading &&
+                                        <p>Раса: {race.map((item, i) => {return(<div key={i}>{item.name}</div>)})}</p>
+                                    }
+
                                     <p>Класс: {character.class_id}</p>
+                                    {/* <p>Класс: {characterClass.map((item, i) => {return(<div key={i}>{item.name}</div>)})}</p> */}
+
                                 </div>
 
                                 <div className="character-sheet-entry">

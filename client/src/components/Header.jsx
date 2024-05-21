@@ -5,7 +5,7 @@ import { useCookies } from "react-cookie";
 
 
 export default function Header () {
-    const [cookies] = useCookies();  // Подгружаем куки
+    const [cookies] = useCookies(['user']);  // Подгружаем куки
 
     return (
         <header>

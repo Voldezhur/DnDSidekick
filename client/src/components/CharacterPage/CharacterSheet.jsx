@@ -29,6 +29,7 @@ const CharacterSheet = ({ character, isLoading }) => {
     const [page, setPage] = useState(1);
     const [fetchRace, race] = useFetching("http://localhost:8000/compendium/races/getRaceById/" + character.race_id);
     const [fetchClass, characterClass] = useFetching("http://localhost:8000/compendium/classes/getClassById/" + character.class_id);
+    const [fetchInventory, inventory] = useFetching("http://localhost:8000/items/getItemsInInventory/" + character.character_id);
 
     const [fetched, setFetched] = useState(false);
 
@@ -43,6 +44,8 @@ const CharacterSheet = ({ character, isLoading }) => {
             {
                 fetchRace();
                 fetchClass();
+                fetchInventory();
+                console.log({race, characterClass, inventory});
                 setFetched(true);
             }
 
@@ -84,15 +87,11 @@ const CharacterSheet = ({ character, isLoading }) => {
                             <CharacterSheetPageSelector title={"Инвентарь"} page={page} setPage={setPage} />
                             <div className="character-sheet-flex">
                                 <div className="character-sheet-entry">
-                                    {/* <p>Доспех: {character.character_sheet.equipment.armor.name}</p>
-                                    <p>Оружие: {character.character_sheet.equipment.weapon.name}</p>
-                                    <p>
-                                        Класс брони: {
-                                            (character.character_sheet.equipment.armor.type === 'легкий' || character.character_sheet.equipment.armor.type === 'средний') ?
-                                            character.character_sheet.equipment.armor.ac + (character.character_sheet.abilityScores.dexterity - 10) % 2 :
-                                            character.character_sheet.equipment.armor.ac
-                                        }
-                                    </p> */}
+                                    {/* {inventory[0].map(async (item, i) => {
+                                        return(
+                                            <div key={i}>{item.item_id}</div>
+                                        );
+                                    })} */}
                                 </div>
                             </div>
                         </>

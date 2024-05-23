@@ -43,13 +43,17 @@ exports.postNewCharacter = async (req, res) => {
             r = await req.db.pool.query(`SELECT * FROM character_sheets WHERE name = '${req.body.character_sheet.name}' ORDER BY character_sheet_id DESC`);
             if (r.rows.length > 0) {
                 // Создаем нового персонажа с новым листом
-                let r_character = await req.db.pool.query(`
+                await req.db.pool.query(`
                     INSERT INTO characters (creator_id, character_sheet_id)
                     VALUES (${req.body.creator_id}, ${r.rows[0].character_sheet_id});
                 `);
 
+                let r_character = await req.db.pool.query(`
+                    SELECT * FROM characters where character_sheet_id = ${r.rows[0].character_sheet_id}
+                `);
+
                 // Созвращаем нового персонажа
-                res.status(201).json({ err: '', newCharacter: r_character.body });
+                res.status(201).json({ err: '', newCharacter: r_character.rows[0] });
                 return;
             }
         }
@@ -64,6 +68,27 @@ exports.deleteCharacter = async (req, res) => {
     try {
         const r = await req.db.pool.query(`DELETE FROM characters WHERE character_id = ${req.params.character_id}`);
         res.status(200).json({ err: '', info: `deleted character with code ${req.params.character_id}` });
+    } catch (e) {
+        res.status(500).send(e.message);
+    }
+}
+
+exports.postCharacterItem = async (req, res) => {
+    try {
+        if (!req.body) {
+            return res.status(400);
+        }
+
+        req.body.items.forEach(async element => {
+            try {
+                const r = await req.db.pool.query(`INSERT INTO inventories (character_id, item_id) VALUES (${req.body.character_id}, ${element})`);
+            }
+            catch (e) {
+                return res.status(400).send(`item ${element} already in inventory`);
+            }
+        });
+
+        return res.status(201);
     } catch (e) {
         res.status(500).send(e.message);
     }

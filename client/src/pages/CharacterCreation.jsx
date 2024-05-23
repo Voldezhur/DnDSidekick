@@ -146,23 +146,30 @@ const CharacterCreation = () => {
                 intelligence: intelligence,
                 wisdom: wisdom,
                 charisma: charisma
-            },
-            equipment: {
-                armor: armor,
-                weapon: weapon
             }
         }
 
-        console.log(characterSheet);
-        
+        let items = [armor, weapon];
+
         axios.post('http://localhost:8000/character/newCharacter', {creator_id: cookies.user.user_id, character_sheet: characterSheet})  // Сохраняем персонажа с айди авторизованного пользователя
         .then((response) => {
             console.log(response);
+            
+            // Ввод предметов в инвентарь персонажа
+            axios.post('http://localhost:8000/character/inventory/addItem', {character_id: response.data.newCharacter.character_id, items: items})  // Сохраняем персонажа с айди авторизованного пользователя
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
             navigate('/home');
         })
         .catch((error) => {
             console.log(error);
         });
+
     }
 
     return (

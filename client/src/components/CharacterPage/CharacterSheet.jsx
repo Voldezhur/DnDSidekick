@@ -4,6 +4,7 @@ import useFetching from "../../hooks/useFetching";
 
 // Импорт компонентов
 import CharacterSheetPageSelector from "./CharacterSheetPageSelector";
+import ItemCard from "./ItemCard";
 
 
 const shittyAttributeTranslation = (attribute) => {
@@ -33,6 +34,10 @@ const CharacterSheet = ({ character, isLoading }) => {
 
     const [fetched, setFetched] = useState(false);
 
+    const rollDice = (d, modifier) => {
+        alert("Результат проверки характеристики: " + (Math.floor(Math.random() * d + 1) + modifier));
+    }
+
     const renderPage = () => {
         if (isLoading) {
             return ("Загрузка");    
@@ -45,7 +50,6 @@ const CharacterSheet = ({ character, isLoading }) => {
                 fetchRace();
                 fetchClass();
                 fetchInventory();
-                console.log({race, characterClass, inventory});
                 setFetched(true);
             }
 
@@ -66,7 +70,17 @@ const CharacterSheet = ({ character, isLoading }) => {
                                 <div className="character-sheet-entry">
                                     {Object.entries(character.ability_scores).map((item, i) => {
                                         return (
-                                                <div key={i}>{shittyAttributeTranslation(item[0])}: {item[1].score} Модификатор: {item[1].modifier}</div>
+                                                <div className="attribute" key={i} onClick={() => {rollDice(20, item[1].modifier)}}>
+                                                    <div className="attribute-modifier">
+                                                        {item[1].modifier}
+                                                    </div>
+                                                    <div>
+                                                        {item[1].score}
+                                                    </div>
+                                                    <div>
+                                                        {shittyAttributeTranslation(item[0])}
+                                                    </div>
+                                                </div>
                                         );
                                     })}
                                 </div>
@@ -87,11 +101,13 @@ const CharacterSheet = ({ character, isLoading }) => {
                             <CharacterSheetPageSelector title={"Инвентарь"} page={page} setPage={setPage} />
                             <div className="character-sheet-flex">
                                 <div className="character-sheet-entry">
-                                    {/* {inventory[0].map(async (item, i) => {
-                                        return(
-                                            <div key={i}>{item.item_id}</div>
-                                        );
-                                    })} */}
+                                    {inventory.map((item, i) => {
+                                        return (
+                                            <div key={i}>
+                                                <ItemCard item_id={item.item_id} />
+                                            </div>
+                                        )
+                                    })}
                                 </div>
                             </div>
                         </>

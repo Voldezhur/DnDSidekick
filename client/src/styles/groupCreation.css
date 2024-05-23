@@ -1,0 +1,25 @@
+.character-adding-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #3B3F53;
+
+    padding: 10px;
+    
+    font-size: 24px;
+}
+
+.character-code-input {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+}
+.character-code-input p {
+    margin: 0;
+    padding: 0;
+}

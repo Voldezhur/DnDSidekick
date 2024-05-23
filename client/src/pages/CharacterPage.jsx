@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+// Импорт функционала
+import { React, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
 import axios from "axios";
 
+// Импорт компонентов
 import Header from "../components/Header";
 import CharacterSheet from "../components/CharacterPage/CharacterSheet";
+import DiceRoller from "../components/DiceRoller/DiceRoller";
+
 
 function App() {
     let { characterId } = useParams();  // Получаем айди персонажа из параметров url
@@ -52,9 +54,10 @@ function App() {
     return (
         <>
             <Header />
+            <DiceRoller />
             <p className="title">{isLoading ? "Загрузка" : String(character.name)}</p>
             <div className="character-page-flex">
-                <CharacterSheet character={character} isLoading={isLoading} />
+                <CharacterSheet character={character} isLoading={isLoading}  />
             </div>
 
             <div className="buttons-flex">

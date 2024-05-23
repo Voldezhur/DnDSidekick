@@ -6,6 +6,8 @@ import axios from "axios";
 
 // Импорт компонентов
 import Header from "../components/Header";
+import CharacterCreationInput from "../components/CharacterCreation/CharacterCreationInput";
+import AddingCharacters from "../components/GroupCreation/AddingCharacters";
 
 
 const GroupCreation = () => {
@@ -29,25 +31,33 @@ const GroupCreation = () => {
     return(
         <>
             <Header />
-
-            {/*
-                Первый шаг создания персонажа:
-                . Имя
-                . Краткая предыстория
-            */}
         
             <p className="section-title">Шаг 1. Название группы</p>
 
             <div className="step-flex">
                 <div className="inputs-flex">
-                    <input onChange={(e) => {setGroupName(e.target.value)}}></input>
+                    <CharacterCreationInput title={"Название группы"} setProperty={setGroupName} />
                 </div>
                 <div className="step-info">
-                    <p className="step-info-title">Придумайте название</p>
+                    Придумайте название группе
                 </div>
             </div>
 
-            <button onClick={saveGroup}>Создать группу</button>
+            <p className="section-title">Шаг 2. Добавьте игроков в группу</p>
+
+            <div className="step-flex">
+                <div className="inputs-flex">
+                    <AddingCharacters />
+                </div>
+                <div className="step-info">
+                    <p className="step-info-title">Добавьте персонажей в группу</p>
+                    Для этого используйте код персонажа
+                </div>
+            </div>
+
+            <div className="buttons-flex">
+                <button className="" onClick={saveGroup}>Создать группу</button>
+            </div>
         </>
     );
 }

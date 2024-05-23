@@ -261,22 +261,39 @@ const CharacterCreation = () => {
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices sagittis justo. Vestibulum commodo id enim at placerat
                 </div>
             </div> 
-
+            
             {/* 
                 Пятый шаг создания персонажа:
+                . Внешний вид
+             */}
+
+            {/* <p className="section-title">Шаг 5. Внешний вид</p>
+
+            <div className="step-flex">
+                <div className="inputs-flex">
+                    <CharacterCreationInput />
+                </div>
+                <div className="step-info">
+                    Теперь вы можете определиться с тем, как ваш персонаж выглядит
+                </div>
+            </div>  */}
+
+            {/* 
+                Шестой шаг создания персонажа:
                 . Стартовое здоровье
              */}
 
-            <p className="section-title">Шаг 5. Начальные характеристики</p>
+            {/* <p className="section-title">Шаг 5. Начальные характеристики</p>
 
             <div className="step-flex">
                 <div className="inputs-flex">
                     
                 </div>
                 <div className="step-info">
-                    
+                    <p className="step-info-title">Очки здоровья - это мера жизнеспособности вашего персонажа. Если они упадут до 0 и ниже - персонаж упадет без создания, а может и умереть</p>
+                    У вашего выбранного класса есть кость ОЗ, кинув ее и добавив модификатор телосложения, вы получите свое начальное здоровье
                 </div>
-            </div> 
+            </div>  */}
 
             {/* Сохранение персонажа */}
 

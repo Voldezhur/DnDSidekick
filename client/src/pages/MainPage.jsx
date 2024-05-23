@@ -90,14 +90,14 @@ const MainPage = () => {
                                 );
                             })}
                             <li>
-                                <div className="group-buttons">
+                                {/* <div className="group-buttons"> */}
                                     <Link to='/groupCreation' className="group-button">
                                         <AccentButton title="Создать группу" className="add-button" />
                                     </Link>
-                                    <Link to='/groupJoin' className="group-button">
+                                    {/* <Link to='/groupJoin' className="group-button">
                                         <AccentButton title="Присоединиться к группе" className="add-button" />
-                                    </Link>
-                                </div>
+                                    </Link> */}
+                                {/* </div> */}
                             </li>
                         </ul>
                     </div>            

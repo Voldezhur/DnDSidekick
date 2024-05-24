@@ -39,7 +39,10 @@ const MainPage = () => {
 
                 axios.get('http://localhost:8000/group/dm/' + user.user_id)
                 .then((response) => {
-                    setListOfGroups([...listOfGroups, ...response.data.body]);
+                    if (response.data.body.length > 0)
+                        {
+                            setListOfGroups(listOfGroups.concat(response.data.body));
+                        }
                 })
                 .catch((error) => {
                     console.log(error);

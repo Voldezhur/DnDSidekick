@@ -42,11 +42,11 @@ const GroupCard = ({ group }) => {
                 <h1>DM: {DM.user_name}</h1>
             </div>
             <div className="list-of-characters">
-                {listOfCharacters.map((item, i) => {
+                {/* {listOfCharacters.map((item, i) => {
                     return(
-                        <p key={i} className="character-in-group">{item.character_sheet.name}</p>
+                        <p key={i} className="character-in-group">{item.character_id}</p>
                     );
-                })}
+                })} */}
             </div>
         </li>
     );

@@ -10,7 +10,7 @@ const ItemCard = ({ item_id }) => {
 
     useEffect(() => {
         fetchItem();
-    }, [item_id]);
+    }, []);
 
     const attack = (damage) => {
         let [amount, value] = damage.split('d');
@@ -18,9 +18,9 @@ const ItemCard = ({ item_id }) => {
         let attackRoll = rollDice(1, 20);
         let damageSum = rollDice(parseInt(amount), parseInt(value))
 
-        if (attackRoll == 20) {
+        if (attackRoll === 20) {
             damageSum *= 2;
-            alert("Бросок на попадание - " + attackRoll + "\nКритическое попадание! Урон удвоен " + "\nУрон - " + damageSum);
+            alert("Бросок на попадание - " + attackRoll + "\nКритическое попадание! Урон удвоен\nУрон - " + damageSum);
         }
 
         else {

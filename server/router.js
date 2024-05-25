@@ -27,6 +27,7 @@ mainRouter.get('/group/:group_id', Groups.getGroupById);
 mainRouter.get('/group/user/:user_id', Groups.getGroupByUser);
 mainRouter.get('/group/dm/:user_id', Groups.getGroupByDM);
 mainRouter.post('/group/newGroup', Groups.postNewGroup);
+mainRouter.post('/group/saveNote', Groups.postSessionNote);
 
 // Compendium
 mainRouter.get('/compendium/classes/list', Compendium.getClassesList);

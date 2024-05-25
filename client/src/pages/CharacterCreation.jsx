@@ -218,7 +218,7 @@ const CharacterCreation = () => {
                 </div>
                 <div className="step-info">
                     <p className="step-info-title">Класс и раса определяют то, на что способен ваш персонаж, какими способностями обладает, а также его внешний вид</p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices sagittis justo. Vestibulum commodo id enim at placerat
+                    Кроме того, классы, как и расы, могут давать уникальные способности
                 </div>
             </div>     
 
@@ -235,7 +235,7 @@ const CharacterCreation = () => {
                 </div>
                 <div className="step-info">
                     <p className="step-info-title">Начинается интересное: при выборе своих атрибутов вы выбираете то, в чем ваш персонаж разбирается лучше, в чем силен</p>
-                    Случайно кидается 4 кубика д6, после чего отсеивается меньшее значение. Так делается 6 раз. Полученные значения вы можете распределить между атрибутами
+                    Случайно кидается 4 кубика д6, после чего отсеивается меньшее значение. Оставшиеся кубики суммируются. Так делается 6 раз. Полученные значения вы можете распределить между атрибутами
                 </div>
             </div>
 
@@ -258,7 +258,7 @@ const CharacterCreation = () => {
                 </div>
                 <div className="step-info">
                     <p className="step-info-title">Для каждого героя важна его экипировка. Она отвечает за класс брони и урон, который вы способны нанести врагам</p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices sagittis justo. Vestibulum commodo id enim at placerat
+                    Различное оружие имеет различное количество кубиков для броска, а разная броня может иметь свои минусы и плюсы, например тяжелая броня дает помеху при попытке двигаться скрытно
                 </div>
             </div> 
             

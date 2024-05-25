@@ -15,6 +15,7 @@ import './styles/compendium.css';
 import './styles/diceRoller.css';
 import './styles/profile.css';
 import './styles/groupCreation.css';
+import './styles/groupPage.css';
 
 const App = () => {
   const [cookies, setCookie] = useCookies(['user']);  // Создаем куки, которые будут использоваться в приложении

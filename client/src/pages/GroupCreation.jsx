@@ -47,7 +47,7 @@ const GroupCreation = () => {
 
             <div className="step-flex">
                 <div className="inputs-flex">
-                    <AddingCharacters />
+                    <AddingCharacters setCharacters = {setCharacters} />
                 </div>
                 <div className="step-info">
                     <p className="step-info-title">Добавьте персонажей в группу</p>

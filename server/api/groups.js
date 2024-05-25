@@ -67,3 +67,28 @@ exports.postNewGroup = async (req, res) => {
         res.status(500).send(e.message);
     }
 }
+
+exports.postSessionNote = async (req, res) => {
+    try {
+        if (!req.body) {
+            return res.status(400);
+        }
+
+        // Записываем группу в таблицу групп
+        let r = await req.db.pool.query(`
+            INSERT INTO session_notes (group_id, notes)
+            VALUES (${req.body.group_id}, '${req.body.notes}');
+        `);
+
+        // Если получилось записать
+        if (r.rowCount > 0) {
+            res.status(201).json({ err: '' });
+        }
+
+        else {
+            res.json({ err: 'There has been an error saving the notes', newGroup: {} });
+        }
+    } catch (e) {
+        res.status(500).send(e.message);
+    }
+}

@@ -1,0 +1,26 @@
+.group-character-card-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.character-card-name {
+    font-size: 32px;
+}
+
+.session-notes-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    width: 50%;
+}
+
+.session-notes-input {
+    width: 100%;
+    height: 80%;
+}

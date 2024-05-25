@@ -4,7 +4,7 @@ import { React, useState } from "react";
 
 const AddingCharacters = () => {
     const [addedCharacters, setAddedCharacters] = useState([]);
-    
+
     return(
         <div className="character-adding-flex">
             <div className="character-code-input">
